@@ -62,5 +62,21 @@ steps = [
         """
         DROP TABLE favorites;
         """
+    ],
+
+    [
+        """
+        CREATE TABLE status (
+            id SERIAL PRIMARY KEY NOT NULL,
+            user_id INTEGER REFERENCES users NOT NULL,
+            post_id INTEGER REFERENCES posts NOT NULL,
+            condition INTEGER,
+            foot_traffic INTEGER,
+            is_open INTEGER NOT NULL
+        );
+        """,
+        """
+        DROP TABLE status;
+        """
     ]
 ]
