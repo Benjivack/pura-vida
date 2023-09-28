@@ -1,3 +1,7 @@
+## September 28, 2023
+
+*
+
 ## September 27, 2023
 
 * Worked on resolving the issues that I have with Docker on my desktop PC (Have mac as backup)
