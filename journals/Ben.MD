@@ -1,5 +1,39 @@
 ## Date
 
+9/28/23
+
+### Today I worked on:
+
+the post endpoint for our posts table
+**AH-HA!💡**
+
+**🎉 Celebrations 🎉**
+our first two endpoints are done!
+
+### Bugs encountered 🐛🐞🐜 :
+
+🪲
+
+**\~Solution~**
+
+### References Used Today:
+
+n/a
+
+### Any Blockers:
+
+n/a
+
+### Tomorrow I'm working on:
+
+VACATION SO NOTHING
+
+### References for Tomorrow:
+
+BED===SLEEP
+
+## Date
+
 9/27/23
 
 ### Today I worked on:
