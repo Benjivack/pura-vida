@@ -52,7 +52,7 @@ class UserRepository:
                                 username=record[1],
                                 email=record[2],
                                 role=record[3],
-                                joined=record[4],
+                                joined=str(record[4]),
                         )
                         result.append(user)
                     return result
