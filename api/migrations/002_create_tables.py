@@ -3,8 +3,8 @@ steps = [
         """
         CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
-            username VARCHAR(10) NOT NULL UNIQUE,
-            password VARCHAR(20) NOT NULL,
+            username VARCHAR(20) NOT NULL UNIQUE,
+            hashed_password TEXT NOT NULL,
             email VARCHAR(50) NOT NULL UNIQUE,
             role VARCHAR(9) NOT NULL,
             joined TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

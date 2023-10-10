@@ -1,6 +1,15 @@
 from pydantic import BaseModel
 from datetime import date
 from queries.accounts import pool
+from typing import List, Union
+
+
+class Error(BaseModel):
+    message: str
+
+
+class UserDuplicateError(ValueError):
+    pass
 
 
 class UserIn(BaseModel):
@@ -14,33 +23,98 @@ class UserIn(BaseModel):
 class UserOut(BaseModel):
     id: int
     username: str
-    password: str
     email: str
     role: str
-    joined: date
+    joined: str
+
+
+class UserOutWithPassword(UserOut):
+    hashed_password: str
 
 
 class UserRepository:
-    def create(self, user: UserIn):
-        with pool.connection() as conn:
-            with conn.cursor() as db:
-                result = db.execute(
-                    """
-                    INSERT INTO users
-                        (username, password, email, role, joined)
-                    VALUES
-                        (%s, %s, %s, %s, %s)
-                    RETURNING id;
-                    """,
-                    [
-                        user.username,
-                        user.password,
-                        user.email,
-                        user.role,
-                        user.joined
-                    ]
-                )
-                print('RESULT ID: ', result)
-                id = result.fetchone()[0]
-                old_data = user.dict()
-                return UserOut(id=id, **old_data)
+    def get_all(self) -> Union[List[UserOut], Error]:
+        try:
+            with pool.connection() as conn:
+
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, username, email, role, joined
+                        FROM users
+                        ORDER BY joined;
+                        """
+                    )
+                    result = []
+                    for record in db:
+                        user = UserOut(
+                                id=record[0],
+                                username=record[1],
+                                email=record[2],
+                                role=record[3],
+                                joined=record[4],
+                        )
+                        result.append(user)
+                    return result
+        except Exception:
+            return {"message": "could not get all users"}
+
+    def create(self, user: UserIn,
+               hashed_password: str) -> UserOutWithPassword:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        INSERT INTO users
+                            (username, hashed_password, email, role, joined)
+                        VALUES
+                            (%s, %s, %s, %s, %s)
+                        RETURNING *;
+                        """,
+                        [
+                            user.username,
+                            hashed_password,
+                            user.email,
+                            user.role,
+                            user.joined
+                        ]
+                    )
+                    print('RESULT ID: ', result)
+                    user = result.fetchone()
+                    return UserOutWithPassword(
+                            id=user[0],
+                            username=user[1],
+                            hashed_password=user[2],
+                            email=user[3],
+                            role=user[4],
+                            joined=str(user[5])
+                        )
+        except Exception:
+            return {"message": "no create user"}
+
+    def get(self, username: str):
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, username,
+                        hashed_password, email, role, joined
+                        FROM users WHERE username = %s
+                        """,
+                        [
+                            username
+                        ]
+                    )
+                    user = result.fetchone()
+                    return UserOutWithPassword(
+                        id=user[0],
+                        username=user[1],
+                        hashed_password=user[2],
+                        email=user[3],
+                        role=user[4],
+                        joined=str(user[5])
+                    )
+        except Exception:
+            return {'message': 'pick a different username'}
