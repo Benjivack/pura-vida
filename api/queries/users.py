@@ -118,3 +118,17 @@ class UserRepository:
                     )
         except Exception:
             return {'message': 'pick a different username'}
+
+    def delete(self, username: str) -> Union[None, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM users WHERE username = %s
+                        """,
+                        [username]
+                    )
+                    return True
+        except Exception:
+            return {"message": "could not delete user"}
