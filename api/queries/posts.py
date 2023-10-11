@@ -68,7 +68,7 @@ class PostRepository:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT (
+                        SELECT
                             id,
                             title,
                             latitude,
@@ -77,9 +77,8 @@ class PostRepository:
                             body,
                             created_by,
                             created_at
-                        )
                         FROM posts
-                        ORDER BY id
+                        ORDER BY created_at
                         """
                     )
                     result = []
