@@ -77,6 +77,7 @@ class PostRepository:
                             body,
                             created_by,
                             created_at
+
                         FROM posts
                         ORDER BY created_at
                         """
@@ -97,3 +98,41 @@ class PostRepository:
                     return result
         except Exception:
             return {"message": "could not get all posts"}
+
+    def get_by_id(self, post_id: int):
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT
+                            id,
+                            title,
+                            latitude,
+                            longitude,
+                            zipcode,
+                            body,
+                            created_by,
+                            created_at
+                        FROM posts
+                        WHERE id = %s
+                        """,
+                        [post_id]
+                    )
+                    record = db.fetchone()
+                    if record is None:
+                        return {"message": "Post not found"}
+
+                    post = PostOut(
+                        id=record[0],
+                        title=record[1],
+                        latitude=record[2],
+                        longitude=record[3],
+                        zipcode=record[4],
+                        body=record[5],
+                        created_by=record[6],
+                        created_at=record[7]
+                    )
+                    return post
+        except Exception:
+            return {"message": "Could not get post by id"}

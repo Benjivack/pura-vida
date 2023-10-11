@@ -15,3 +15,11 @@ def get_all(
     repo: PostRepository = Depends(),
 ):
     return repo.get_all()
+
+
+@router.get("/api/posts/{post_id}", response_model=Union[PostOut, Error])
+def get_post_by_id(
+    post_id: int,
+    repo: PostRepository = Depends(),
+):
+    return repo.get_by_id(post_id)
