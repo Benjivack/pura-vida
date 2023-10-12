@@ -7,7 +7,13 @@ router = APIRouter()
 
 
 @router.post("/api/posts")
-def create_post(post: PostIn, repo: PostRepository = Depends()):
+def create_post(
+    post: PostIn,
+    repo: PostRepository = Depends(),
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        )
+        ):
     return repo.create(post)
 
 
@@ -36,3 +42,17 @@ def get_post_by_id(
     repo: PostRepository = Depends(),
 ):
     return repo.get_by_id(post_id)
+
+
+@router.delete(
+        "/api/posts/{post_id}",
+        response_model=Union[bool, Error]
+)
+def delete_post(
+    post_id: int,
+    post: PostRepository = Depends(),
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        )
+):
+    return post.delete(post_id)
