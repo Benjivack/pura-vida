@@ -1,6 +1,10 @@
 from fastapi import APIRouter, Depends
-from queries.status import StatusIn, StatusRepository
+from queries.status import (StatusIn,
+                            StatusRepository,
+                            StatusOut,
+                            Error)
 from authenticator import authenticator
+from typing import Union
 
 router = APIRouter()
 
@@ -14,3 +18,15 @@ def create_status(
         )
         ):
     return repo.create_status(status)
+
+
+@router.put("/api/status/{status_id}", response_model=Union[StatusOut, Error])
+def update_status(
+    status_id: int,
+    status: StatusIn,
+    repo: StatusRepository = Depends(),
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        )
+) -> Union[StatusOut, Error]:
+    return repo.update(status_id, status)

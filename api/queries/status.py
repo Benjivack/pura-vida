@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 from queries.accounts import pool
 from typing import Optional
+from typing import Union
+
+
+class Error(BaseModel):
+    message: str
 
 
 class StatusIn(BaseModel):
@@ -47,3 +52,31 @@ class StatusRepository:
                 id = result.fetchone()[0]
                 old_data = status.dict()
                 return StatusOut(id=id, **old_data)
+
+    def update(self,
+               status_id: int,
+               status: StatusIn
+               ) -> Union[StatusOut, Error]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE status
+                    SET user_id = %s
+                    , post_id = %s
+                    , condition = %s
+                    , foot_traffic = %s
+                    , is_open = %s
+                    WHERE id = %s
+                    """,
+                    [
+                        status.user_id,
+                        status.post_id,
+                        status.condition,
+                        status.foot_traffic,
+                        status.is_open,
+                        status_id
+                    ]
+                )
+            old_data = status.dict()
+            return StatusOut(id=status_id, **old_data)
