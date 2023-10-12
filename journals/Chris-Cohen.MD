@@ -10,3 +10,9 @@
 * Studied Postgresql documentation to be better prepared for the future of the project.
 
 * I realized today how to limit length of things in sql
+
+## October 10, 2023
+
+* Sign up authentification got finished. Completed login and logout to complete backend authentification.
+
+* Blocker: Error with get all function resolved.

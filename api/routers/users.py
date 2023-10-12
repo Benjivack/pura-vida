@@ -78,3 +78,11 @@ def get_all(
     repo: UserRepository = Depends(),
 ):
     return repo.get_all()
+
+
+@router.delete("/api/users/{username}", response_model=Union[bool, Error])
+async def delete_user(
+    username: str,
+    users: UserRepository = Depends(),
+):
+    return users.delete(username)
