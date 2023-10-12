@@ -25,10 +25,21 @@ def get_all(
 
 
 @router.get(
-        "/api/Review/{post_id}", response_model=Union[List[ReviewOut], Error]
+        "/api/review/{post_id}", response_model=Union[List[ReviewOut], Error]
 )
 def get_review_by_id(
     post_id: int,
     repo: ReviewRepository = Depends(),
 ):
     return repo.get_by_id(post_id)
+
+
+@router.delete(
+        "/api/review/{review_id}",
+        response_model=Union[bool, Error]
+)
+def delete_review(
+    review_id: int,
+    reviews: ReviewRepository = Depends(),
+):
+    return reviews.delete(review_id)

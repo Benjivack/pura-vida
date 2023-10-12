@@ -122,3 +122,17 @@ class ReviewRepository:
                     return rec
         except Exception:
             return {"message": "Could not get review by id"}
+
+    def delete(self, id: int) -> Union[None, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM reviews WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception:
+            return {"message": "could not delete review"}
