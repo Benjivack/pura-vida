@@ -1,6 +1,15 @@
+12 oct
+    today i finished the review endpoints by creating a delete endpoint for reviews
+    we started collaborating on the final endpoints to get them all completed so we can move forward to the frontend as a whole
+
+11 oct
+    group continued working on backend endpoints
+    i created a post endpoint with auth for reviews
+    i created a get all endpoint and added a get all reviews by post to the endpoint
+
 10 oct
     we completed backend auth working through any blockers that arose
-    we are starting to build protected backend endpoints 
+    we are starting to build protected backend endpoints
 
 9 oct
     today we put a pause on endpoint work to switch and work on backend authentication
