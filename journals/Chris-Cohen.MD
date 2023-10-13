@@ -10,3 +10,9 @@
 * Studied Postgresql documentation to be better prepared for the future of the project.
 
 * I realized today how to limit length of things in sql
+
+## 10/9-12
+
+* Basically just worked on endpoints the whole time. Feeling really good about them. No major blockers.
+
+* Throughout the week it got easier and easier to do.
