@@ -4,7 +4,7 @@ from queries.status import (StatusIn,
                             StatusOut,
                             Error)
 from authenticator import authenticator
-from typing import Union
+from typing import List, Union
 
 router = APIRouter()
 
@@ -30,3 +30,13 @@ def update_status(
         )
 ) -> Union[StatusOut, Error]:
     return repo.update(status_id, status)
+
+
+@router.get("/api/status", response_model=Union[List[StatusOut], Error])
+def get_all(
+    repo: StatusRepository = Depends(),
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        )
+):
+    return repo.get_all()
