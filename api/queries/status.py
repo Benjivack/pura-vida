@@ -15,7 +15,7 @@ class StatusIn(BaseModel):
     is_open: int
 
 
-class StatusOut(BaseModel):
+class StatusGetOut(BaseModel):
     id: int
     user_id: int
     post_id: int
@@ -24,6 +24,15 @@ class StatusOut(BaseModel):
     is_open: int
     username: str
     title: str
+
+
+class StatusOut(BaseModel):
+    id: int
+    user_id: int
+    post_id: int
+    condition: int
+    foot_traffic: int
+    is_open: int
 
 
 class StatusRepository:
@@ -82,7 +91,7 @@ class StatusRepository:
             old_data = status.dict()
             return StatusOut(id=status_id, **old_data)
 
-    def get_all(self) -> Union[List[StatusOut], Error]:
+    def get_all(self) -> Union[List[StatusGetOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -104,7 +113,7 @@ class StatusRepository:
                     )
                     result = []
                     for record in db:
-                        status = StatusOut(
+                        status = StatusGetOut(
                             id=record[0],
                             user_id=record[1],
                             post_id=record[2],

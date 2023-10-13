@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from queries.status import (StatusIn,
                             StatusRepository,
                             StatusOut,
+                            StatusGetOut,
                             Error)
 from authenticator import authenticator
 from typing import List, Union
@@ -32,7 +33,7 @@ def update_status(
     return repo.update(status_id, status)
 
 
-@router.get("/api/status", response_model=Union[List[StatusOut], Error])
+@router.get("/api/status", response_model=Union[List[StatusGetOut], Error])
 def get_all(
     repo: StatusRepository = Depends(),
     account_data: dict = Depends(
