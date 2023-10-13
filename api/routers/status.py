@@ -40,3 +40,14 @@ def get_all(
         )
 ):
     return repo.get_all()
+
+
+@router.delete(
+        "/api/status/{status_id}",
+        response_model=Union[bool, Error]
+)
+def delete_status(
+    status_id: int,
+    status: StatusRepository = Depends(),
+):
+    return status.delete(status_id)

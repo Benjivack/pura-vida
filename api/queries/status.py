@@ -112,3 +112,17 @@ class StatusRepository:
                     return result
         except Exception:
             return {"message": "could not get all statuses"}
+
+    def delete(self, id: int) -> Union[None, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM status WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception:
+            return {"message": "could not status review"}
