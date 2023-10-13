@@ -52,7 +52,7 @@ class UserRepository:
                                 username=record[1],
                                 email=record[2],
                                 role=record[3],
-                                joined=record[4],
+                                joined=str(record[4]),
                         )
                         result.append(user)
                     return result
@@ -118,3 +118,46 @@ class UserRepository:
                     )
         except Exception:
             return {'message': 'pick a different username'}
+
+    def get_specific_user(self,
+                          username: str) -> Union[UserOutWithPassword, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, username,
+                        hashed_password, email, role, joined
+                        FROM users WHERE username = %s
+                        """,
+                        [username]
+                    )
+                    user = result.fetchone()
+                    if user is None:
+                        return Error(message='User not found')
+                    return UserOutWithPassword(
+                        id=user[0],
+                        username=user[1],
+                        hashed_password=user[2],
+                        email=user[3],
+                        role=user[4],
+                        joined=str(user[5])
+                    )
+        except Exception as e:
+            return Error(message=str(e))
+
+    def delete(self, username: str):
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM users WHERE username = %s
+                        """,
+                        [
+                            username
+                        ]
+                    )
+                    return True
+        except Exception:
+            return {'message': 'Error deleting user'}
