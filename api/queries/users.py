@@ -145,3 +145,19 @@ class UserRepository:
                     )
         except Exception as e:
             return Error(message=str(e))
+
+    def delete(self, username: str):
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM users WHERE username = %s
+                        """,
+                        [
+                            username
+                        ]
+                    )
+                    return True
+        except Exception:
+            return {'message': 'Error deleting user'}
