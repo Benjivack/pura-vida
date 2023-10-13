@@ -22,6 +22,8 @@ class StatusOut(BaseModel):
     condition: int
     foot_traffic: int
     is_open: int
+    username: str
+    title: str
 
 
 class StatusRepository:
@@ -92,7 +94,9 @@ class StatusRepository:
                             s.post_id,
                             s.condition,
                             s.foot_traffic,
-                            s.is_open
+                            s.is_open,
+                            u.username,
+                            p.title
                         FROM status as s
                             inner join posts as p on s.post_id = p.id
                                 inner join users as u on s.user_id = u.id
@@ -106,7 +110,9 @@ class StatusRepository:
                             post_id=record[2],
                             condition=record[3],
                             foot_traffic=record[4],
-                            is_open=record[5]
+                            is_open=record[5],
+                            username=record[6],
+                            title=record[7]
                         )
                         result.append(status)
                     return result
