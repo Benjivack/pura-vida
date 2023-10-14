@@ -1,5 +1,39 @@
 ## Date
 
+10/13/23
+
+### Today I worked on:
+
+Corrected mistakes I caused by changing pydantic model.
+
+**AH-HA!💡**
+
+Realized we could just make a second pydantic model instead of changing all of our code to match the new pydantic model
+
+**🎉 Celebrations 🎉**
+Onto the front end!
+
+### Bugs encountered 🐛🐞🐜 :
+
+We have no idea how to do front end auth
+🪲
+
+**\~Solution~**
+
+### References Used Today:
+
+### Any Blockers:
+
+front-end auth
+
+### Tomorrow I'm working on:
+
+Poller.py
+
+### References for Tomorrow:
+
+## Date
+
 9/28/23
 
 ### Today I worked on:
