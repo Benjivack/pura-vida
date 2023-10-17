@@ -5,8 +5,11 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import { Main } from "./Main"
+import LoginForm from "./LoginForm.jsx";
 
 function App() {
+  const domain = /https:\/\/[^/]+/;
+  const basename = process.env.PUBLIC_URL.replace(domain, "");
   // const [launchInfo, setLaunchInfo] = useState([]);
   // const [error, setError] = useState(null);
 
@@ -31,13 +34,14 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
-        <AuthProvider>
+      <BrowserRouter basename={basename}>
+        <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 
           {/* <ErrorNotification error={error} />
           <Construct info={launchInfo} /> */}
           <Routes>
             <Route exact path="/" element= {<Main />} />
+            <Route exact path="/login" element= {<LoginForm />}/>
           </Routes>
         </AuthProvider>
       </BrowserRouter>
