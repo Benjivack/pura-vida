@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import { Main } from "./Main"
 import LoginForm from "./LoginForm.jsx";
+import SignupForm from "./SignUpForm.jsx";
 
 function App() {
   const domain = /https:\/\/[^/]+/;
@@ -41,7 +42,8 @@ function App() {
           <Construct info={launchInfo} /> */}
           <Routes>
             <Route exact path="/" element= {<Main />} />
-            <Route exact path="/login" element= {<LoginForm />}/>
+            <Route exact path="/signup" element={<SignupForm />} />
+            <Route exact path="/login" element= {<LoginForm />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

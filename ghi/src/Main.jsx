@@ -12,7 +12,6 @@ const ConsoleBanner = () => {
 };
 
 export const Main = () => {
-    console.log('Hi i work')
     const { token } = useToken();
   return (
     <div>
