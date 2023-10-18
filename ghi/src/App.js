@@ -4,6 +4,7 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import { Main } from "./Main"
 import LoginForm from "./LoginForm.jsx";
 import SignupForm from "./SignUpForm.jsx";
+import PostsForm from "./posts/PostsForm";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -43,7 +44,8 @@ function App() {
           <Routes>
             <Route exact path="/" element= {<Main />} />
             <Route exact path="/signup" element={<SignupForm />} />
-            <Route exact path="/login" element= {<LoginForm />} />
+            <Route exact path="/login" element={<LoginForm />} />
+            <Route exact path='/post' element={<PostsForm />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

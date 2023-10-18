@@ -75,6 +75,9 @@ async def create_user(
 
 @router.get("/users", response_model=Union[List[UserOut], Error])
 def get_all(
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        ),
     repo: UserRepository = Depends(),
 ):
     return repo.get_all()
