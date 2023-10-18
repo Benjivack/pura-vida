@@ -175,3 +175,17 @@ class PostRepository:
                     return post
         except Exception:
             return {"message": "Could not get post by id"}
+
+    def delete(self, id: int) -> Union[None, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM posts WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception:
+            return {"message": "could not delete post"}

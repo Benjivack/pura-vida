@@ -80,6 +80,20 @@ def get_all(
     return repo.get_all()
 
 
+@router.get("/api/users/{username}", response_model=Union[UserOut, Error])
+def get_user(
+    username: str,
+    users: UserRepository = Depends(),
+):
+    user = users.get_specific_user(username)
+    if isinstance(user, Error):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=user.message,
+        )
+    return user
+
+
 @router.delete("/api/users/{username}", response_model=Union[bool, Error])
 async def delete_user(
     username: str,

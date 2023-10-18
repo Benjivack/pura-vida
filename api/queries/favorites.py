@@ -86,4 +86,4 @@ class FavoritesRepository:
                     )
                     return True
         except Exception:
-            return {"message": "could not delete user"}
+            return {"message": "could not delete favorite"}
