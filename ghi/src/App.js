@@ -5,6 +5,8 @@ import { Main } from "./Main"
 import LoginForm from "./LoginForm.jsx";
 import SignupForm from "./SignUpForm.jsx";
 import PostsForm from "./posts/PostsForm";
+import PostList from "./posts/PostsList";
+import PostDetail from "./posts/PostDetail";
 import ReviewForm from "./reviews/ReviewForm";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
@@ -47,6 +49,8 @@ function App() {
             <Route exact path="/signup" element={<SignupForm />} />
             <Route exact path="/login" element={<LoginForm />} />
             <Route exact path='/post' element={<PostsForm />} />
+            <Route exact path='/posts/' element={<PostList />} />
+            <Route exact path='/posts/:post_id' element={<PostDetail />} />
             <Route exact path='/review' element={<ReviewForm />} />
           </Routes>
         </AuthProvider>

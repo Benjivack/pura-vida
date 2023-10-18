@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PostsForm = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +10,7 @@ const PostsForm = () => {
   const [body, setBody] = useState("");
   const [created_by, setCreatedBy] = useState("");
   const { token } = useToken();
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const fetchData = async () => {
         const url = `${process.env.REACT_APP_API_HOST}/api/user`;
@@ -61,10 +61,10 @@ const PostsForm = () => {
     const response = await fetch(postUrl, fetchOption);
     if (response.ok) {
         e.target.reset();
+        navigate("/posts");
     }
   };
 
-    // navigate("/posts");
 
   if (token) {
       return (
