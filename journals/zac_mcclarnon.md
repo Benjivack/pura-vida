@@ -1,3 +1,12 @@
+17 oct
+    so today i had to fix a syntax error with my migration table work i did yesterday
+    i verified some of my teammates work and merged them with main
+    i started on my frontend review form hitting a few roadblocks of confusion im attempting to work through
+
+16 oct
+    we started on front end today discussing what needs to be done first to proceed
+    i went back and added a on delete cascade to our foreign keys on the migration tables
+
 12 oct
     today i finished the review endpoints by creating a delete endpoint for reviews
     we started collaborating on the final endpoints to get them all completed so we can move forward to the frontend as a whole
