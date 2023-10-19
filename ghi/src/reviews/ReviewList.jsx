@@ -31,7 +31,7 @@ const ReviewList = () => {
     return (
       <div>
         {token ? (
-          <button onClick={() => navigateToCreateReview()}>Create Trail</button>
+          <button onClick={() => navigateToCreateReview()}>Create Review</button>
         ) : null}
         <table>
           <thead>
