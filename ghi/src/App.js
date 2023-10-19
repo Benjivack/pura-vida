@@ -4,6 +4,12 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import { Main } from "./Main"
 import LoginForm from "./LoginForm.jsx";
 import SignupForm from "./SignUpForm.jsx";
+import PostsForm from "./posts/PostsForm";
+import PostList from "./posts/PostsList";
+import PostDetail from "./posts/PostDetail";
+import ReviewForm from "./reviews/ReviewForm";
+import ReviewList from "./reviews/ReviewList";
+import ReviewDetail from "./reviews/ReviewDetail";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -37,13 +43,18 @@ function App() {
     <div>
       <BrowserRouter basename={basename}>
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
-
           {/* <ErrorNotification error={error} />
           <Construct info={launchInfo} /> */}
           <Routes>
-            <Route exact path="/" element= {<Main />} />
+            <Route exact path="/" element={<Main />} />
             <Route exact path="/signup" element={<SignupForm />} />
-            <Route exact path="/login" element= {<LoginForm />} />
+            <Route exact path="/login" element={<LoginForm />} />
+            <Route exact path="/post" element={<PostsForm />} />
+            <Route exact path="/posts/" element={<PostList />} />
+            <Route exact path="/posts/:post_id" element={<PostDetail />} />
+            <Route exact path="/review" element={<ReviewForm />} />
+            <Route exact path="/reviews" element={<ReviewList />} />
+            <Route exact path="/reviews/:review_id" element={<ReviewDetail />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
