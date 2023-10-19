@@ -1,3 +1,9 @@
+18 oct
+    today i finished my review front end page with some help from brian and ben
+    i completed a front end list page for all reviews
+    i completed a base line detail page to expand on later
+    i spent a decent chunk of time reviewing my teammates merges testing them and merging with main
+
 17 oct
     so today i had to fix a syntax error with my migration table work i did yesterday
     i verified some of my teammates work and merged them with main
