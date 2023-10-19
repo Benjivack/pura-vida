@@ -80,7 +80,6 @@ class UserRepository:
                             user.joined
                         ]
                     )
-                    print('RESULT ID: ', result)
                     user = result.fetchone()
                     return UserOutWithPassword(
                             id=user[0],
@@ -115,7 +114,7 @@ class UserRepository:
                         email=user[3],
                         role=user[4],
                         joined=str(user[5])
-                    )
+                        )
         except Exception:
             return {'message': 'pick a different username'}
 

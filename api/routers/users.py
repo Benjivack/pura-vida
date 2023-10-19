@@ -75,9 +75,27 @@ async def create_user(
 
 @router.get("/users", response_model=Union[List[UserOut], Error])
 def get_all(
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        ),
     repo: UserRepository = Depends(),
 ):
     return repo.get_all()
+
+
+@router.get("/api/user", response_model=Union[UserOut, Error])
+def get_current_user(
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        ),
+    repo: UserRepository = Depends(),
+):
+    if isinstance(repo, Error):
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=repo.message,
+        )
+    return account_data
 
 
 @router.get("/api/users/{username}", response_model=Union[UserOut, Error])
