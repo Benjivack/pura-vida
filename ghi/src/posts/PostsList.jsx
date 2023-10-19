@@ -54,7 +54,7 @@ const PostList = () => {
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
 
 export default PostList;
