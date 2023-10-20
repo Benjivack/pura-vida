@@ -22,13 +22,14 @@ const PostDetail = () => {
         fetchData(setPost, post_id);
     }, [setPost, post_id]);
 
+    console.log(post_id)
     const navigateToCreateReview = async (post_id) => {
         navigate(`/posts/${post_id}/review`)
     }
 
     return (
         <div>
-            { token ? <button onClick={() => navigateToCreateReview()}>Create Review</button> : null}
+            { token ? <button onClick={() => navigateToCreateReview(post_id)}>Create Review</button> : null}
             <table>
                 <thead>
                     <tr>

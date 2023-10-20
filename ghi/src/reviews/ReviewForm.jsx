@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useParams } from "react-router-dom";
 
 
 function ReviewForm() {
     const [body, setBody] = useState([])
     const [rating, setRating] = useState([])
     const [user_id, setUser] = useState([])
-    const [post_id, setPost] = useState([])
     const { token } = useToken();
+    let { post_id } = useParams();
 
     const getUser = async () => {
         const userUrl = `${process.env.REACT_APP_API_HOST}/api/user`
@@ -82,17 +83,6 @@ function ReviewForm() {
                   className="form-control"
                   onChange={(event) => {
                     setRating(event.target.value);
-                  }}
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">post</label>
-                <input
-                  name="post"
-                  type="number"
-                  className="form-control"
-                  onChange={(event) => {
-                    setPost(event.target.value);
                   }}
                 />
               </div>
