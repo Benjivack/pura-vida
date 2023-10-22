@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function ReviewForm() {
@@ -9,6 +10,7 @@ function ReviewForm() {
     const [user_id, setUser] = useState([])
     const { token } = useToken();
     let { post_id } = useParams();
+    const navigate = useNavigate();
 
     const getUser = async () => {
         const userUrl = `${process.env.REACT_APP_API_HOST}/api/user`
@@ -54,6 +56,7 @@ function ReviewForm() {
         const response = await fetch(reviewUrl, fetchOption);
         if (response.ok) {
             event.target.reset();
+            navigate(`/posts/${post_id}/reviews`);
         }
     }
 

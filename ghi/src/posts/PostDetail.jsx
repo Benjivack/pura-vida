@@ -26,35 +26,47 @@ const PostDetail = () => {
     const navigateToCreateReview = async (post_id) => {
         navigate(`/posts/${post_id}/review`)
     }
+    const navigateToReviewList = async (post_id) => {
+      navigate(`/posts/${post_id}/reviews`);
+    };
 
     return (
-        <div>
-            { token ? <button onClick={() => navigateToCreateReview(post_id)}>Create Review</button> : null}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Zipcode</th>
-                        <th>Body</th>
-                        <th>Created By</th>
-                        <th>Created At</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{ post.title }</td>
-                        <td>{ post.latitude }</td>
-                        <td>{ post.longitude }</td>
-                        <td>{ post.zipcode }</td>
-                        <td>{ post.body }</td>
-                        <td>{ post.created_by }</td>
-                        <td>{ post.created_at }</td>
-                    </tr>
-            </tbody>
-            </table>
-        </div>
+      <div>
+        {token ? (
+          <button onClick={() => navigateToCreateReview(post_id)}>
+            Create Review
+          </button>
+        ) : null}
+        {token ? (
+          <button onClick={() => navigateToReviewList(post_id)}>
+            Review List
+          </button>
+        ) : null}
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Zipcode</th>
+              <th>Body</th>
+              <th>Created By</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{post.title}</td>
+              <td>{post.latitude}</td>
+              <td>{post.longitude}</td>
+              <td>{post.zipcode}</td>
+              <td>{post.body}</td>
+              <td>{post.created_by}</td>
+              <td>{post.created_at}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
 }
 

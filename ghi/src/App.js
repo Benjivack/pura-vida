@@ -58,20 +58,16 @@ function App() {
               path="/posts/:post_id/review"
               element={<ReviewForm />}
             />
-            <Route exact path="/reviews" element={<ReviewList />} />
+            <Route
+              exact
+              path="/posts/:post_id/reviews"
+              element={<ReviewList />}
+            />
             <Route
               exact
               path="/reviews/:review_id"
               element={<ReviewDetail />}
             />
-            <Route exact path="/post" element={<PostsForm />} />
-            <Route exact path="/reviews" element={<ReviewList />} />
-            <Route
-              exact
-              path="/reviews/:review_id"
-              element={<ReviewDetail />}
-            />
-            <Route exact path="/post" element={<PostsForm />} />
             <Route
               exact
               path="/post/:post_id/status"
