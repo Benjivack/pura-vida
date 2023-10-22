@@ -1,6 +1,7 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import LoginForm from "./LoginForm";
 import TokenCard from "./TokenCard";
+import LogoutForm from "./LogoutForm";
 
 const ConsoleBanner = () => {
   return (
@@ -18,6 +19,7 @@ export const Main = () => {
       <ConsoleBanner />
       {!token && <LoginForm />}
       {token && <TokenCard />}
+      {token && <LogoutForm />}
 
       {/* <UserDataCard /> */}
     </div>
