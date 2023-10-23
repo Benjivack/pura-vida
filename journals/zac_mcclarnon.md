@@ -1,3 +1,13 @@
+23 oct
+    today i started and finished back end unit tests for the review functions with help from Brian,
+    im starting to clean up my code then transition into css to make my webpages ascetically pleasing,
+    
+
+19 oct
+    today i finished the basic requirements of my sections and responsibility
+    making it so that you can create a review for a specific post and then be redirected to the reviews for that post,
+    on top of that you can also create a review from that list,
+
 18 oct
     today i finished my review front end page with some help from brian and ben
     i completed a front end list page for all reviews
