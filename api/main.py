@@ -12,6 +12,7 @@ app.include_router(favorites.router)
 app.include_router(reviews.router)
 app.include_router(status.router)
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

@@ -91,7 +91,7 @@ class StatusRepository:
             old_data = status.dict()
             return StatusOut(id=status_id, **old_data)
 
-    def get_all(self) -> Union[List[StatusGetOut], Error]:
+    def get_all(self, post_id) -> Union[List[StatusGetOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -109,7 +109,9 @@ class StatusRepository:
                         FROM status as s
                             inner join posts as p on s.post_id = p.id
                                 inner join users as u on s.user_id = u.id
-                        """
+                        WHERE p.id = %s
+                        """,
+                        [post_id]
                     )
                     result = []
                     for record in db:

@@ -11,6 +11,7 @@ import ReviewForm from "./reviews/ReviewForm";
 import ReviewList from "./reviews/ReviewList";
 import ReviewDetail from "./reviews/ReviewDetail";
 import StatusForm from "./status/StatusForm";
+import StatusList from "./status/StatusList";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -72,6 +73,11 @@ function App() {
               exact
               path="/post/:post_id/status"
               element={<StatusForm />}
+            />
+            <Route
+              exact
+              path="/post/:post_id/statuslist"
+              element={<StatusList />}
             />
           </Routes>
         </AuthProvider>
