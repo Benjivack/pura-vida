@@ -12,6 +12,10 @@ import ReviewList from "./reviews/ReviewList";
 import ReviewDetail from "./reviews/ReviewDetail";
 import StatusForm from "./status/StatusForm";
 import StatusList from "./status/StatusList";
+import Favorites from "./favorites/Favorites";
+import AddFavorite from "./favorites/AddFavorite";
+
+
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -54,6 +58,8 @@ function App() {
             <Route exact path="/post" element={<PostsForm />} />
             <Route exact path="/posts/" element={<PostList />} />
             <Route exact path="/posts/:post_id" element={<PostDetail />} />
+            <Route exact path = "/favorites" element={<Favorites />}/>
+            <Route exact path = "/favorites/add" element={<AddFavorite />}/>
             <Route
               exact
               path="/posts/:post_id/review"
