@@ -14,8 +14,9 @@ import StatusForm from "./status/StatusForm";
 import StatusList from "./status/StatusList";
 import Favorites from "./favorites/Favorites";
 import AddFavorite from "./favorites/AddFavorite";
-
-
+import UsersList from "./users/UsersList";
+import UserDetail from "./users/UserDetail";
+import UserDelete from "./users/UserDelete";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -53,6 +54,9 @@ function App() {
           <Construct info={launchInfo} /> */}
           <Routes>
             <Route exact path="/" element={<Main />} />
+            <Route exact path="/users" element={<UsersList />} />
+            <Route exact path="/users/:username" element={<UserDetail />} />
+            <Route exact path="/users/:username/delete" element={<UserDelete />} />
             <Route exact path="/signup" element={<SignupForm />} />
             <Route exact path="/login" element={<LoginForm />} />
             <Route exact path="/post" element={<PostsForm />} />
