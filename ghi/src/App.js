@@ -71,12 +71,12 @@ function App() {
             />
             <Route
               exact
-              path="/post/:post_id/status"
+              path="/posts/:post_id/status"
               element={<StatusForm />}
             />
             <Route
               exact
-              path="/post/:post_id/statuslist"
+              path="/posts/:post_id/statuses"
               element={<StatusList />}
             />
           </Routes>

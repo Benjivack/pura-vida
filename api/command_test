@@ -1,3 +1,0 @@
-glv-cloud-cli deploy -a puravida -i registry.gitlab.com/the-outriders/pura-vida/api:latest -e CORS_HOST=https://the-outriders.gitlab.io
-
-glv-cloud-cli deploy -a puravida -i registry.gitlab.com/the-outriders/pura-vida/api:latest -e SIGNING_KEY=877433b9d2fbe47c779d9a4b1f351681 -e DATABASE_URL=postgresql://exampleuser:secret@jun-11-pt-puravidadb-service.default.svc.cluster.local/postgres -e CORS_HOST=https://the-outriders.gitlab.io

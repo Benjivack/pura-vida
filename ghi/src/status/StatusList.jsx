@@ -13,7 +13,6 @@ const StatusList = () => {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setStatus(data);
     }
   };
@@ -31,13 +30,15 @@ const StatusList = () => {
   };
 
   const navigateToCreateStatus = async (post_id) => {
-    navigate(`/post/${post_id}/status`);
+    navigate(`/posts/${post_id}/status`);
   };
 
   return (
     <div>
       {token ? (
-        <button onClick={() => navigateToCreateStatus()}>Create Status</button>
+        <button onClick={() => navigateToCreateStatus(post_id)}>
+          Create Status
+        </button>
       ) : null}
       <table className="table-auto">
         <thead>
