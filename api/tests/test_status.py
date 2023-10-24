@@ -16,10 +16,11 @@ class CreateStatusRepo:
     def create_status(self, status):
 
         result = {
+            "id": 1,
             "user_id": 1,
             "post_id": 1,
-            "foot_traffic": 5,
             "condition": 6,
+            "foot_traffic": 5,
             "is_open": 7
         }
         result.update(status)
@@ -40,7 +41,7 @@ def test_get_all_status():
 
     app.dependency_overrides[StatusRepository] = EmptyStatusRepository
 
-    response = client.get("/api/status/{post_id}")
+    response = client.get("/api/status/1")
 
     # Act
 
@@ -63,8 +64,8 @@ def test_create_status():
     json = {
             "user_id": 1,
             "post_id": 1,
-            "foot_traffic": 5,
             "condition": 6,
+            "foot_traffic": 5,
             "is_open": 7
         }
 
@@ -72,8 +73,8 @@ def test_create_status():
             "id": 1,
             "user_id": 1,
             "post_id": 1,
-            "foot_traffic": 5,
             "condition": 6,
+            "foot_traffic": 5,
             "is_open": 7
         }
 
