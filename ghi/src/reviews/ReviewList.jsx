@@ -10,14 +10,14 @@ const ReviewList = () => {
     let { post_id } = useParams();
 
 
-      const getReviews = async (post_id) => {
-          const url = `${process.env.REACT_APP_API_HOST}/api/review/${post_id}`;
-          const response = await fetch(url);
-          if (response.ok) {
-            const data = await response.json();
-            setReviews(data);
-          }
-      }
+    const getReviews = async (post_id) => {
+        const url = `${process.env.REACT_APP_API_HOST}/api/review/${post_id}`;
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+        }
+    }
 
     useEffect(() => {
       getReviews(post_id);
@@ -30,9 +30,10 @@ const ReviewList = () => {
     const navigateToCreateReview = async () => {
       navigate(`/posts/${post_id}/review`);
     };
-    // const navigateToPost = async (post_id) => {
-    //   navigate(`/posts/${post_id}`);
-    // };
+
+    const navigateToPost = async () => {
+      navigate(`/posts/${post_id}`);
+    };
 
     return (
       <div>
@@ -41,25 +42,23 @@ const ReviewList = () => {
             Create Review
           </button>
         ) : null}
-        {/* {token ? (
-          <button onClick={() => navigateToPost()}>
-            Post
-          </button>
-        ) : null} */}
+        {token ? <button onClick={() => navigateToPost()}>Post</button> : null}
         <table>
           <thead>
             <tr>
               <th>Trail Rating</th>
-              <th>Trail Name</th>
-              <th>View Review</th>
+              <th>Reviewer</th>
+              <th>Title</th>
+              <th>Review Detail</th>
             </tr>
-          </thead>
+          </thead>{console.log(reviews)}
           <tbody>
             {reviews.map((review) => {
               return (
                 <tr key={review.id}>
                   <td>{review.rating}</td>
-                  <td>{review.post_id}</td>
+                  <td>{review.title}</td>
+                  <td>{review.username}</td>
                   <td>
                     <button onClick={() => navigateToReview(review.id)}>
                       View

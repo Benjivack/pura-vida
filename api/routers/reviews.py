@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from queries.reviews import ReviewIn, ReviewRepository, ReviewOut, Error
+from queries.reviews import ReviewGetOut
 from typing import Union, List
 from authenticator import authenticator
 
@@ -25,7 +26,9 @@ def get_all(
 
 
 @router.get(
-        "/api/review/{post_id}", response_model=Union[List[ReviewOut], Error]
+        "/api/review/{post_id}", response_model=Union[
+            List[ReviewGetOut], Error
+        ]
 )
 def get_review_by_id(
     post_id: int,
