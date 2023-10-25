@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from queries.favorites import (
     FavoriteIn,
     FavoritesRepository,
-    FavoriteOut,
-    Error
+    Error,
+    GetFavorites
 )
 from typing import Union, List
 
@@ -23,7 +23,7 @@ def create_favorite(
     return repo.create(favorite)
 
 
-@router.get("/api/favorites", response_model=Union[List[FavoriteOut], Error])
+@router.get("/api/favorites", response_model=Union[List[GetFavorites], Error])
 def get_all(
     repo: FavoritesRepository = Depends(),
     account_data: dict = Depends(
