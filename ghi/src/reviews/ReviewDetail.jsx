@@ -31,7 +31,7 @@ const ReviewDetail = () => {
     navigate(`/posts/${post_id}/reviews`);
   };
   return (
-    <div>
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <h2> Are you sure you want to delete review? </h2>
       <table>
         <thead>
@@ -45,12 +45,22 @@ const ReviewDetail = () => {
           </tr>
           <tr>
             <td>
-              <button onClick={() => navigateToReviews(review_id)}>Delete</button>
+              <button
+                className="m-4 bg-red-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => navigateToReviews(review_id)}
+              >
+                Delete
+              </button>
             </td>
             <td> </td>
             <td> </td>
             <td>
-              <button onClick={() => navigateToReview()}>Cancel</button>
+              <button
+                className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => navigateToReview()}
+              >
+                Cancel
+              </button>
             </td>
           </tr>
         </tbody>

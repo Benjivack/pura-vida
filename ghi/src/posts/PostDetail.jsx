@@ -41,7 +41,7 @@ const PostDetail = () => {
     <div>
       {token ? (
         <button
-          className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
           onClick={() => navigateToCreateReview(post_id)}
         >
           Create Review
@@ -49,47 +49,47 @@ const PostDetail = () => {
       ) : null}
       {token ? (
         <button
-          className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
           onClick={() => navigateToReviewList(post_id)}
         >
           Review List
         </button>
       ) : null}
       <button
-        className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+        className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
         onClick={() => navigateToStatusList(post_id)}
       >
         Trail Status
       </button>
       {token ? (
         <button
-          className="justify-content:space-between; bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
           onClick={() => navigateToCreateStatus(post_id)}
         >
           Create Status
         </button>
       ) : null}
-      <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 pl-9">
+      <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Zipcode</th>
-            <th>Body</th>
-            <th>Created By</th>
-            <th>Created At</th>
+            <th className="p-4">Title</th>
+            <th className="p-4">Latitude</th>
+            <th className="p-4">Longitude</th>
+            <th className="p-4">Zipcode</th>
+            <th className="p-4">Body</th>
+            <th className="p-4">Created By</th>
+            <th className="p-4">Created At</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{post.title}</td>
-            <td>{post.latitude}</td>
-            <td>{post.longitude}</td>
-            <td>{post.zipcode}</td>
-            <td>{post.body}</td>
-            <td>{post.created_by}</td>
-            <td>{post.created_at}</td>
+            <td className="p-4">{post.title}</td>
+            <td className="p-4">{post.latitude}</td>
+            <td className="p-4">{post.longitude}</td>
+            <td className="p-4">{post.zipcode}</td>
+            <td className="p-4">{post.body}</td>
+            <td className="p-4">{post.created_by}</td>
+            <td className="p-4">{post.created_at}</td>
           </tr>
         </tbody>
       </table>

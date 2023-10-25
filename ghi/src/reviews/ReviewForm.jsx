@@ -66,32 +66,28 @@ function ReviewForm() {
             onSubmit={(event) => handleSubmit(event)}
           >
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="body"
-              >
-                body
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Body
               </label>
               <input
                 name="body"
                 type="text"
-                className="form-control"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Body"
                 onChange={(event) => {
                   setBody(event.target.value);
                 }}
               />
             </div>
             <div className="mb-6">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="rating"
-              >
-                rating
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Rating
               </label>
               <input
                 name="rating"
                 type="number"
-                className="form-control"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="1 - 5"
                 onChange={(event) => {
                   setRating(event.target.value);
                 }}

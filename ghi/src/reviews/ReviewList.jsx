@@ -36,29 +36,44 @@ const ReviewList = () => {
   return (
     <div>
       {token ? (
-        <button onClick={() => navigateToCreateReview()}>Create Review</button>
+        <button
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToCreateReview()}
+        >
+          Create Review
+        </button>
       ) : null}
-      {token ? <button onClick={() => navigateToPost()}>Post</button> : null}
-      <table>
+      {token ? (
+        <button
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToPost()}
+        >
+          Post
+        </button>
+      ) : null}
+      <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <thead>
           <tr>
-            <th>Trail Rating</th>
-            <th>Trail Name</th>
-            <th>Created By</th>
-            <th>Review Body</th>
-            <th>Delete Review</th>
+            <th className="p-4">Trail Rating</th>
+            <th className="p-4">Trail Name</th>
+            <th className="p-4">Created By</th>
+            <th className="p-4">Review Body</th>
+            <th className="p-4"> Delete Review</th>
           </tr>
         </thead>
         <tbody>
           {reviews.map((review) => {
             return (
               <tr key={review.id}>
-                <td>{review.rating}</td>
-                <td>{review.title}</td>
-                <td>{review.username}</td>
-                <td>{review.body}</td>
-                <td>
-                  <button onClick={() => navigateToReview(review.id)}>
+                <td className="p-4">{review.rating}</td>
+                <td className="p-4">{review.title}</td>
+                <td className="p-4">{review.username}</td>
+                <td className="p-4">{review.body}</td>
+                <td className="p-4">
+                  <button
+                    className="m-4 bg-red-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => navigateToReview(review.id)}
+                  >
                     delete
                   </button>
                 </td>
