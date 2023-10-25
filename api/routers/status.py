@@ -51,3 +51,11 @@ def delete_status(
     status: StatusRepository = Depends(),
 ):
     return status.delete(status_id)
+
+
+@router.get("/api/status/",
+            response_model=Union[List[StatusGetOut], Error])
+def get_every(
+    repo: StatusRepository = Depends(),
+):
+    return repo.get_every()

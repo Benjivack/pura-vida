@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from queries.reviews import ReviewIn, ReviewRepository, ReviewOut, Error
+from queries.reviews import ReviewIn, ReviewRepository, Error
 from queries.reviews import ReviewGetOut
 from typing import Union, List
 from authenticator import authenticator
@@ -18,7 +18,7 @@ def create_review(
     return repo.create(review)
 
 
-@router.get("/api/review", response_model=Union[List[ReviewOut], Error])
+@router.get("/api/review", response_model=Union[List[ReviewGetOut], Error])
 def get_all(
     repo: ReviewRepository = Depends(),
 ):

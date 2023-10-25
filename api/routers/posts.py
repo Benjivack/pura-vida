@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from queries.posts import PostIn, PostRepository, PostOut, Error
+from queries.posts import PostIn, PostRepository, PostOut, Error, GetPost
 from typing import Union, List
 from authenticator import authenticator
 
@@ -17,7 +17,7 @@ def create_post(
     return repo.create(post)
 
 
-@router.get("/api/posts", response_model=Union[List[PostOut], Error])
+@router.get("/api/posts", response_model=Union[List[GetPost], Error])
 def get_all(
     repo: PostRepository = Depends(),
 ):
@@ -36,7 +36,7 @@ def update_post(
     return repo.update(post_id, post)
 
 
-@router.get("/api/posts/{post_id}", response_model=Union[PostOut, Error])
+@router.get("/api/posts/{post_id}", response_model=Union[GetPost, Error])
 def get_post_by_id(
     post_id: int,
     repo: PostRepository = Depends(),

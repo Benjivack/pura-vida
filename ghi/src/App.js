@@ -18,6 +18,7 @@ import Navbar from "./components/Navbar/Navbar";
 import UsersList from "./users/UsersList";
 import UserDetail from "./users/UserDetail";
 import UserDelete from "./users/UserDelete";
+import UserProfilePage from "./users/UserProfilePage";
 import PostUpdate from "./posts/PostUpdate";
 import LogoutForm from "./LogoutForm";
 // import { useEffect, useState } from "react";
@@ -58,6 +59,7 @@ function App() {
           <Construct info={launchInfo} /> */}
           <Routes>
             <Route exact path="/" element={<Main />} />
+            <Route exact path="/profile" element={<UserProfilePage />} />
             <Route exact path="/users" element={<UsersList />} />
             <Route exact path="/users/:username" element={<UserDetail />} />
             <Route
