@@ -40,24 +40,36 @@ const PostDetail = () => {
   return (
     <div>
       {token ? (
-        <button onClick={() => navigateToCreateReview(post_id)}>
+        <button
+          className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToCreateReview(post_id)}
+        >
           Create Review
         </button>
       ) : null}
       {token ? (
-        <button onClick={() => navigateToReviewList(post_id)}>
+        <button
+          className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToReviewList(post_id)}
+        >
           Review List
         </button>
       ) : null}
-      <button onClick={() => navigateToStatusList(post_id)}>
+      <button
+        className="bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+        onClick={() => navigateToStatusList(post_id)}
+      >
         Trail Status
       </button>
       {token ? (
-        <button onClick={() => navigateToCreateStatus(post_id)}>
+        <button
+          className="justify-content:space-between; bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToCreateStatus(post_id)}
+        >
           Create Status
         </button>
       ) : null}
-      <table>
+      <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 pl-9">
         <thead>
           <tr>
             <th>Title</th>
