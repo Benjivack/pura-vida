@@ -90,7 +90,7 @@ function App() {
             />
             <Route
               exact
-              path="/reviews/:review_id"
+              path="/:post_id/reviews/:review_id"
               element={<ReviewDetail />}
             />
             <Route
