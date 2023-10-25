@@ -14,10 +14,12 @@ import StatusForm from "./status/StatusForm";
 import StatusList from "./status/StatusList";
 import Favorites from "./favorites/Favorites";
 import AddFavorite from "./favorites/AddFavorite";
+import Navbar from "./components/Navbar/Navbar";
 import UsersList from "./users/UsersList";
 import UserDetail from "./users/UserDetail";
 import UserDelete from "./users/UserDelete";
 import PostUpdate from "./posts/PostUpdate";
+import LogoutForm from "./LogoutForm";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -50,6 +52,7 @@ function App() {
   return (
     <div>
       <BrowserRouter basename={basename}>
+        <Navbar />
         <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
           {/* <ErrorNotification error={error} />
           <Construct info={launchInfo} /> */}
@@ -57,15 +60,24 @@ function App() {
             <Route exact path="/" element={<Main />} />
             <Route exact path="/users" element={<UsersList />} />
             <Route exact path="/users/:username" element={<UserDetail />} />
-            <Route exact path="/users/:username/delete" element={<UserDelete />} />
+            <Route
+              exact
+              path="/users/:username/delete"
+              element={<UserDelete />}
+            />
             <Route exact path="/signup" element={<SignupForm />} />
             <Route exact path="/login" element={<LoginForm />} />
+            <Route exact path="/logout" element={<LogoutForm />} />
             <Route exact path="/post" element={<PostsForm />} />
             <Route exact path="/posts/" element={<PostList />} />
             <Route exact path="/posts/:post_id" element={<PostDetail />} />
-            <Route exact path="/posts/:post_id/update" element={<PostUpdate />} />
-            <Route exact path = "/favorites" element={<Favorites />}/>
-            <Route exact path = "/favorites/add" element={<AddFavorite />}/>
+            <Route
+              exact
+              path="/posts/:post_id/update"
+              element={<PostUpdate />}
+            />
+            <Route exact path="/favorites" element={<Favorites />} />
+            <Route exact path="/favorites/add" element={<AddFavorite />} />
             <Route
               exact
               path="/posts/:post_id/review"
