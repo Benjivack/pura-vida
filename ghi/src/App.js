@@ -17,6 +17,7 @@ import AddFavorite from "./favorites/AddFavorite";
 import UsersList from "./users/UsersList";
 import UserDetail from "./users/UserDetail";
 import UserDelete from "./users/UserDelete";
+import PostUpdate from "./posts/PostUpdate";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -62,6 +63,7 @@ function App() {
             <Route exact path="/post" element={<PostsForm />} />
             <Route exact path="/posts/" element={<PostList />} />
             <Route exact path="/posts/:post_id" element={<PostDetail />} />
+            <Route exact path="/posts/:post_id/update" element={<PostUpdate />} />
             <Route exact path = "/favorites" element={<Favorites />}/>
             <Route exact path = "/favorites/add" element={<AddFavorite />}/>
             <Route

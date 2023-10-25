@@ -31,38 +31,38 @@ class PostOut(BaseModel):
 
 class PostRepository:
     def update(self, post_id: int, posts: PostIn) -> Union[PostOut, Error]:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    db.execute(
-                        """
-                        UPDATE posts
-                        SET title = %s
-                        , latitude = %s
-                        , longitude = %s
-                        , zipcode = %s
-                        , body = %s
-                        , created_by = %s
-                        , created_at = %s
-                        WHERE id = %s
+        # try:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE posts
+                    SET title = %s
+                    , latitude = %s
+                    , longitude = %s
+                    , zipcode = %s
+                    , body = %s
+                    , created_by = %s
+                    , created_at = %s
+                    WHERE id = %s
 
-                        """,
-                        [
-                            posts.title,
-                            posts.latitude,
-                            posts.longitude,
-                            posts.zipcode,
-                            posts.body,
-                            posts.created_by,
-                            posts.created_at,
-                            post_id
-                        ]
-                    )
-                # old_data = posts.dict()
-                # return PostOut(id=post_id, **old_data)
-                return self.posts_in_to_out(post_id, posts)
-        except Exception:
-            return {"message": "could not update that post"}
+                    """,
+                    [
+                        posts.title,
+                        posts.latitude,
+                        posts.longitude,
+                        posts.zipcode,
+                        posts.body,
+                        posts.created_by,
+                        posts.created_at,
+                        post_id
+                    ]
+                )
+            # old_data = posts.dict()
+            # return PostOut(id=post_id, **old_data)
+            return self.posts_in_to_out(post_id, posts)
+        # except Exception:
+        #     return {"message": "could not update that post"}
 
     def create(self, posts: PostIn):
         with pool.connection() as conn:
