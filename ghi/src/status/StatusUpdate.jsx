@@ -24,7 +24,7 @@ const StatusUpdate = () => {
   };
 
   useEffect(() => {
-    getUserId();
+    getUserId(status_post_id);
   }, [status_post_id]);
 
   const handleSubmit = async (event) => {

@@ -22,7 +22,6 @@ const PostDetail = () => {
     fetchData(setPost, post_id);
   }, [setPost, post_id]);
 
-  console.log(post_id);
   const navigateToCreateReview = async (post_id) => {
     navigate(`/posts/${post_id}/review`);
   };
@@ -69,6 +68,14 @@ const PostDetail = () => {
           Create Status
         </button>
       ) : null}
+      {token ? (
+        <button
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigate(`/favorites/add`)}
+        >
+          Add Favorite
+        </button>
+      ) : null}
       <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <thead>
           <tr>
@@ -88,7 +95,7 @@ const PostDetail = () => {
             <td className="p-4">{post.longitude}</td>
             <td className="p-4">{post.zipcode}</td>
             <td className="p-4">{post.body}</td>
-            <td className="p-4">{post.created_by}</td>
+            <td className="p-4">{post.author}</td>
             <td className="p-4">{post.created_at}</td>
           </tr>
         </tbody>

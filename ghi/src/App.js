@@ -24,6 +24,7 @@ import UserProfilePage from "./users/UserProfilePage";
 import PostUpdate from "./posts/PostUpdate";
 import LogoutForm from "./LogoutForm";
 
+import PostDelete from "./posts/PostDelete";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -77,6 +78,7 @@ function App() {
               <Route exact path="/post" element={<PostsForm />} />
               <Route exact path="/posts/" element={<PostList />} />
               <Route exact path="/posts/:post_id" element={<PostDetail />} />
+              <Route exact path="/posts/:post_id/delete" element={<PostDelete />} />
               <Route
                 exact
                 path="/posts/:post_id/update"
