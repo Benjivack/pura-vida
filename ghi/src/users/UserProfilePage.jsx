@@ -36,7 +36,7 @@ const UserProfilePage = () => {
   };
 
   const fetchReviewsData = async () => {
-      const url = `${process.env.REACT_APP_API_HOST}/api/review/`;
+      const url = `${process.env.REACT_APP_API_HOST}/api/review`;
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
@@ -45,7 +45,7 @@ const UserProfilePage = () => {
   };
 
   const fetchStatusData = async () => {
-      const url = `${process.env.REACT_APP_API_HOST}/api/status/`;
+      const url = `${process.env.REACT_APP_API_HOST}/api/status`;
       const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
