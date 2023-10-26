@@ -27,7 +27,6 @@ const PostUpdate = () => {
             const response = await fetch(url, {credentials: 'include'});
             if (response.ok) {
             const postData = await response.json();
-            console.log(postData)
             setPostInfo(postData);
         }
     };
@@ -36,9 +35,6 @@ const PostUpdate = () => {
         fetchData();
         fetchPostData(post_id);
     }, [post_id]);
-    console.log(postInfo)
-    console.log(logger)
-    console.log(title)
 
     useEffect(() => {
         if (postInfo !== '') {

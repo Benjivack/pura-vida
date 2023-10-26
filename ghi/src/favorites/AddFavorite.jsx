@@ -10,7 +10,6 @@ function AddFavoriteForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(event);
         const jsDate = new Date();
         const isoDate = jsDate.toISOString().split('T')[0];
         const favoriteData = {
@@ -18,10 +17,8 @@ function AddFavoriteForm() {
             user_id: userId,
             created_at: isoDate
         };
-        console.log(favoriteData);
 
         const favoriteUrl = `${process.env.REACT_APP_API_HOST}/api/favorites`;
-        console.log(favoriteUrl);
         const fetchOption = {
             method: 'POST',
             headers: {

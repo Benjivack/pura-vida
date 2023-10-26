@@ -21,7 +21,7 @@ const StatusList = () => {
     fetchData(post_id);
     const interval = setInterval(() => {
       fetchData(post_id);
-    }, 30000);
+    }, 15000);
     return () => clearInterval(interval);
   }, [post_id]);
 

@@ -36,7 +36,6 @@ const StatusUpdate = () => {
       foot_traffic: footTraffic,
       is_open: isOpen,
     };
-    console.log(data);
 
     const statusUrl = `${process.env.REACT_APP_API_HOST}/api/status/${status_id}`;
     const fetchOption = {
@@ -112,7 +111,7 @@ const StatusUpdate = () => {
               />
               <button
                 className="m-4 bg-gray-300 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(`/profile`)}
               >
                 Cancel
               </button>

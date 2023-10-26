@@ -55,7 +55,6 @@ const Favorites = () => {
     }
 
     useEffect(() => {
-        console.log(`useEffect running with token ${token}`);
             fetchLoggedInUserData();
             fetchFavoriteTrails(setNotFound);
         // eslint-disable-next-line react-hooks/exhaustive-deps

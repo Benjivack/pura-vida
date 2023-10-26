@@ -72,7 +72,6 @@ class FavoritesRepository:
                     )
                     result = []
                     for record in db:
-                        print(record)
                         favorite = GetFavorites(
                             id=record[0],
                             user_id=record[1],

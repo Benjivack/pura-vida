@@ -3,10 +3,10 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+
 const StatusForm = () => {
   let { post_id } = useParams();
   const [userId, setUserId] = useState("");
-  //   const [postId, setPostId] = useState("");
   const [condition, setCondition] = useState("");
   const [footTraffic, setFootTraffic] = useState("");
   const [isOpen, setIsOpen] = useState("");
@@ -26,18 +26,6 @@ const StatusForm = () => {
     getUserId();
   }, []);
 
-  //   const getPostId = async () => {
-  //     const postUrl = `${process.env.REACT_APP_API_HOST}/api/posts/${post_id}`;
-  //     const response = await fetch(postUrl, { credentials: "include" });
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setPostId(data["id"]);
-  //     }
-  //   };
-  //   useEffect(() => {
-  //     getPostId();
-  //   }, []);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
@@ -47,7 +35,6 @@ const StatusForm = () => {
       foot_traffic: footTraffic,
       is_open: isOpen,
     };
-    console.log(data);
     const statusUrl = `${process.env.REACT_APP_API_HOST}/api/status`;
     const fetchOption = {
       method: "POST",

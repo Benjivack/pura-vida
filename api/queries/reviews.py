@@ -125,7 +125,6 @@ class ReviewRepository:
                         [post_id]
                     )
                     record = db.fetchall()
-                    print(record)
                     if record is None:
                         return {"message": "Post not found"}
                     rec = []

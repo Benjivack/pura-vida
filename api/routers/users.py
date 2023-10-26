@@ -69,8 +69,6 @@ async def create_user(
     form = AccountForm(username=user.username, password=user.password)
     token = await authenticator.login(response, request, form, users)
     return AccountToken(account=account, **token.dict())
-    # response.status_code = 400
-    # return users.create(user)
 
 
 @router.get("/users", response_model=Union[List[UserOut], Error])
@@ -101,6 +99,9 @@ def get_current_user(
 @router.get("/api/users/{username}", response_model=Union[UserOut, Error])
 def get_user(
     username: str,
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        ),
     users: UserRepository = Depends(),
 ):
     user = users.get_specific_user(username)
@@ -115,6 +116,9 @@ def get_user(
 @router.delete("/api/users/{username}", response_model=Union[bool, Error])
 async def delete_user(
     username: str,
+    account_data: dict = Depends(
+        authenticator.get_current_account_data
+        ),
     users: UserRepository = Depends(),
 ):
     return users.delete(username)

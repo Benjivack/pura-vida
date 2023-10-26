@@ -16,7 +16,6 @@ const Navbar = () => {
   const { token } = useToken();
 
   const navigate = useNavigate();
-  console.log(token);
   if (token) {
     return (
       <Drawer sx={navbarStyles.drawer} variant="permanent" anchor="right">
