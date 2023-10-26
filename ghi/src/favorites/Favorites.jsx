@@ -57,30 +57,37 @@ const Favorites = () => {
     }
     if (token) {
         return (
-            <div>
-                <h2>Favorites</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Trail Name</th>
-                            <th>View Trail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {favoriteTrails.map(trail => (
-                            <tr key={trail.id}>
-                                <td>{trail.title}</td>
-                                <td>
-                                    <button onClick={() => navigateToTrail(trail.post_id)}>View</button>
-                                </td>
-                                <td>
-                                    <button onClick={() => deleteFavorite(trail.id)}>Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+          <div>
+            <h2>Favorites</h2>
+            <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+              <thead>
+                <tr>
+                  <th className="p-4">Trail Name</th>
+                  <th className="p-4">View Trail</th>
+                </tr>
+              </thead>
+              <tbody>
+                {favoriteTrails.map((trail) => (
+                  <tr key={trail.id}>
+                    <td className="p-4">{trail.title}</td>
+                    <td className="p-4">
+                      <button onClick={() => navigateToTrail(trail.post_id)}>
+                        View
+                      </button>
+                    </td>
+                    <td className="p-4">
+                      <button
+                        className="m-4 bg-red-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                        onClick={() => deleteFavorite(trail.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         );
     } else {
         return (

@@ -95,132 +95,131 @@ const UserProfilePage = () => {
 
     return (
       <div>
-        <h3>User Info</h3>
-        <table>
+        <h3 className="p-4">User Info</h3>
+        <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Joined</th>
+              <th className="p-4">ID</th>
+              <th className="p-4">Username</th>
+              <th className="p-4">Email</th>
+              <th className="p-4">Role</th>
+              <th className="p-4">Joined</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>{user.joined}</td>
+              <td className="p-4">{user.id}</td>
+              <td className="p-4">{user.username}</td>
+              <td className="p-4">{user.email}</td>
+              <td className="p-4">{user.role}</td>
+              <td className="p-4">{user.joined}</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>List of Status</h3>
-        <table>
+        <h3 className="p-4">List of Status</h3>
+        <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
-              <th>Trail Name</th>
-              <th>Condition</th>
-              <th>Foot Traffic</th>
-              <th>Open?</th>
+              <th className="p-4">Trail Name</th>
+              <th className="p-4">Condition</th>
+              <th className="p-4">Foot Traffic</th>
+              <th className="p-4">Open?</th>
             </tr>
           </thead>
           <tbody>
-                {loggedStatus.map(stat => {
-                    return (
-                    <tr key = { stat.id }>
-                        <td>
-                            <button onClick={() => navigateToPost(stat.post_id)}>
-                            { stat.title }
-                            </button>
-                        </td>
-                        <td>{ stat.condition }</td>
-                        <td>{ stat.foot_traffic }</td>
-                        <td>{ stat.is_open }</td>
-                    </tr>
-                );
-                })}
+            {loggedStatus.map((stat) => {
+              return (
+                <tr key={stat.id}>
+                  <td className="p-4">
+                    <button onClick={() => navigateToPost(stat.post_id)}>
+                      {stat.title}
+                    </button>
+                  </td>
+                  <td className="p-4">{stat.condition}</td>
+                  <td className="p-4">{stat.foot_traffic}</td>
+                  <td className="p-4">{stat.is_open}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
-        <h3>List of Favorites</h3>
-        <table>
+        <h3 className="p-4">List of Favorites</h3>
+        <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
-              <th>Trail Name</th>
-              <th>Saved On</th>
+              <th className="p-4">Trail Name</th>
+              <th className="p-4">Saved On</th>
             </tr>
           </thead>
           <tbody>
-                {loggedFavorites.map(favorite => {
-                    return (
-                    <tr key = { favorite.id }>
-                        <td>
-                            <button onClick={() => navigateToPost(favorite.post_id)}>
-                            { favorite.title }
-                            </button>
-                        </td>
-                        <td>{ favorite.created_at }</td>
-                    </tr>
-                );
-                })}
+            {loggedFavorites.map((favorite) => {
+              return (
+                <tr key={favorite.id}>
+                  <td className="p-4">
+                    <button onClick={() => navigateToPost(favorite.post_id)}>
+                      {favorite.title}
+                    </button>
+                  </td>
+                  <td className="p-4">{favorite.created_at}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
-        <h3>List of Posts</h3>
-        <table>
+        <h3 className="p-4">List of Posts</h3>
+        <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
-              <th>Trail Name</th>
-              <th>Created On</th>
-              <th>author</th>
+              <th className="p-4">Trail Name</th>
+              <th className="p-4">Created On</th>
+              <th className="p-4">author</th>
             </tr>
           </thead>
           <tbody>
-                {loggedPosts.map(post => {
-                    return (
-                    <tr key = { post.id }>
-                        <td>
-                            <button onClick={() => navigateToPost(post.id)}>
-                            { post.title }
-                            </button>
-                        </td>
-                        <td>{ post.created_at }</td>
-                        <td>{ post.author }</td>
-                    </tr>
-                );
-                })}
+            {loggedPosts.map((post) => {
+              return (
+                <tr key={post.id}>
+                  <td className="p-4">
+                    <button onClick={() => navigateToPost(post.id)}>
+                      {post.title}
+                    </button>
+                  </td>
+                  <td className="p-4">{post.created_at}</td>
+                  <td className="p-4">{post.author}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
-        <h3>List of Reviews</h3>
-        <table>
+        <h3 className="p-4">List of Reviews</h3>
+        <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
-              <th>Trail Name</th>
-              <th>Review</th>
-              <th>Created On</th>
+              <th className="p-4">Trail Name</th>
+              <th className="p-4">Review</th>
+              <th className="p-4">Created On</th>
             </tr>
           </thead>
           <tbody>
-                {loggedReviews.map(review => {
-                    return (
-                    <tr key = { review.id }>
-                        <td>
-                            <button onClick={() => navigateToPost(review.post_id)}>
-                            { review.title }
-                            </button>
-                        </td>
-                        <td>{ review.body }</td>
-                        <td>{ review.created_at }</td>
-                    </tr>
-                );
-                })}
+            {loggedReviews.map((review) => {
+              return (
+                <tr key={review.id}>
+                  <td className="p-4">
+                    <button onClick={() => navigateToPost(review.post_id)}>
+                      {review.title}
+                    </button>
+                  </td>
+                  <td className="p-4">{review.body}</td>
+                  <td className="p-4">{review.created_at}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-
       </div>
     );
 }
