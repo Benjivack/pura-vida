@@ -53,60 +53,62 @@ function App() {
   return (
     <div>
       <BrowserRouter basename={basename}>
-        <Navbar />
-        <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
-          {/* <ErrorNotification error={error} />
+        <div className="bg-mountain bg-no-repeat bg-cover h-screen overflow-visible">
+          <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
+            <Navbar />
+            {/* <ErrorNotification error={error} />
           <Construct info={launchInfo} /> */}
-          <Routes>
-            <Route exact path="/" element={<Main />} />
-            <Route exact path="/profile" element={<UserProfilePage />} />
-            <Route exact path="/users" element={<UsersList />} />
-            <Route exact path="/users/:username" element={<UserDetail />} />
-            <Route
-              exact
-              path="/users/:username/delete"
-              element={<UserDelete />}
-            />
-            <Route exact path="/signup" element={<SignupForm />} />
-            <Route exact path="/login" element={<LoginForm />} />
-            <Route exact path="/logout" element={<LogoutForm />} />
-            <Route exact path="/post" element={<PostsForm />} />
-            <Route exact path="/posts/" element={<PostList />} />
-            <Route exact path="/posts/:post_id" element={<PostDetail />} />
-            <Route
-              exact
-              path="/posts/:post_id/update"
-              element={<PostUpdate />}
-            />
-            <Route exact path="/favorites" element={<Favorites />} />
-            <Route exact path="/favorites/add" element={<AddFavorite />} />
-            <Route
-              exact
-              path="/posts/:post_id/review"
-              element={<ReviewForm />}
-            />
-            <Route
-              exact
-              path="/posts/:post_id/reviews"
-              element={<ReviewList />}
-            />
-            <Route
-              exact
-              path="/:post_id/reviews/:review_id"
-              element={<ReviewDetail />}
-            />
-            <Route
-              exact
-              path="/posts/:post_id/status"
-              element={<StatusForm />}
-            />
-            <Route
-              exact
-              path="/posts/:post_id/statuses"
-              element={<StatusList />}
-            />
-          </Routes>
-        </AuthProvider>
+            <Routes>
+              <Route exact path="/" element={<Main />} />
+              <Route exact path="/profile" element={<UserProfilePage />} />
+              <Route exact path="/users" element={<UsersList />} />
+              <Route exact path="/users/:username" element={<UserDetail />} />
+              <Route
+                exact
+                path="/users/:username/delete"
+                element={<UserDelete />}
+              />
+              <Route exact path="/signup" element={<SignupForm />} />
+              <Route exact path="/login" element={<LoginForm />} />
+              <Route exact path="/logout" element={<LogoutForm />} />
+              <Route exact path="/post" element={<PostsForm />} />
+              <Route exact path="/posts/" element={<PostList />} />
+              <Route exact path="/posts/:post_id" element={<PostDetail />} />
+              <Route
+                exact
+                path="/posts/:post_id/update"
+                element={<PostUpdate />}
+              />
+              <Route exact path="/favorites" element={<Favorites />} />
+              <Route exact path="/favorites/add" element={<AddFavorite />} />
+              <Route
+                exact
+                path="/posts/:post_id/review"
+                element={<ReviewForm />}
+              />
+              <Route
+                exact
+                path="/posts/:post_id/reviews"
+                element={<ReviewList />}
+              />
+              <Route
+                exact
+                path="/:post_id/reviews/:review_id"
+                element={<ReviewDetail />}
+              />
+              <Route
+                exact
+                path="/posts/:post_id/status"
+                element={<StatusForm />}
+              />
+              <Route
+                exact
+                path="/posts/:post_id/statuses"
+                element={<StatusList />}
+              />
+            </Routes>
+          </AuthProvider>
+        </div>
       </BrowserRouter>
     </div>
   );

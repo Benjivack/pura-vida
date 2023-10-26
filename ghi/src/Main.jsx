@@ -1,6 +1,5 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import LoginForm from "./LoginForm";
-import TokenCard from "./TokenCard";
 import LogoutForm from "./LogoutForm";
 
 const ConsoleBanner = () => {
@@ -13,14 +12,14 @@ const ConsoleBanner = () => {
 };
 
 export const Main = () => {
-    const { token } = useToken();
+  const { token } = useToken();
   return (
-    <div>
+    <div className="grid grid-cols-3 gap-4">
+      map grid three columns
       <ConsoleBanner />
       {!token && <LoginForm />}
-      {token && <TokenCard />}
+      {/* {token && <TokenCard />} */}
       {token && <LogoutForm />}
-
       {/* <UserDataCard /> */}
     </div>
   );
