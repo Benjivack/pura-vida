@@ -12,6 +12,8 @@ import ReviewList from "./reviews/ReviewList";
 import ReviewDelete from "./reviews/ReviewDelete";
 import StatusForm from "./status/StatusForm";
 import StatusList from "./status/StatusList";
+import StatusDelete from "./status/StatusDelete";
+import StatusUpdate from "./status/StatusUpdate";
 import Favorites from "./favorites/Favorites";
 import AddFavorite from "./favorites/AddFavorite";
 import Navbar from "./components/Navbar/Navbar";
@@ -21,6 +23,7 @@ import UserDelete from "./users/UserDelete";
 import UserProfilePage from "./users/UserProfilePage";
 import PostUpdate from "./posts/PostUpdate";
 import LogoutForm from "./LogoutForm";
+
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -105,6 +108,16 @@ function App() {
                 exact
                 path="/posts/:post_id/statuses"
                 element={<StatusList />}
+              />
+              <Route
+                exact
+                path="/:status_title/:status_user_id/:status_id/delete"
+                element={<StatusDelete />}
+              />
+              <Route
+                exact
+                path="/:status_post_id/:status_user_id/:status_id/update"
+                element={<StatusUpdate />}
               />
             </Routes>
           </AuthProvider>
