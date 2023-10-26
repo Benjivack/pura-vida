@@ -4,15 +4,23 @@ import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
     const [favoriteTrails, setFavoriteTrails] = useState([]);
+    const [favorites, setFavorites] = useState([]);
     const { token } = useToken();
     const navigate = useNavigate();
+    const [user, setUser] = useState("");
+
+    const fetchLoggedInUserData = async () => {
+      const url = `${process.env.REACT_APP_API_HOST}/api/user`;
+      const response = await fetch(url, {credentials: 'include'});
+      if (response.ok) {
+          const data = await response.json();
+          setUser(data)
+      }
+    };
 
     const fetchFavoriteTrails = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/favorites`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
                 credentials: 'include'
             });
 
@@ -36,7 +44,6 @@ const Favorites = () => {
             });
 
             if (response.ok) {
-                // Remove the deleted favorite from the state
                 setFavoriteTrails(prevFavorites => prevFavorites.filter(favorite => favorite.id !== favorites_id));
             }
         } catch (error) {
@@ -46,11 +53,20 @@ const Favorites = () => {
 
     useEffect(() => {
         console.log(`useEffect running with token ${token}`);
-        if (token) {
+            fetchLoggedInUserData();
             fetchFavoriteTrails();
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token]);
+    }, []);
+
+    const MyFavoritesData = async (favoriteTrails) => {
+      const myFavoritesList = favoriteTrails.filter(favorite => favorite.user_id === user.id);
+      setFavorites(myFavoritesList);
+    };
+
+  useEffect(() => {
+    MyFavoritesData(favoriteTrails);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favoriteTrails]);
 
     const navigateToTrail = (post_id) => {
         navigate(`/posts/${post_id}`);
@@ -67,7 +83,7 @@ const Favorites = () => {
                 </tr>
               </thead>
               <tbody>
-                {favoriteTrails.map((trail) => (
+                {favorites.map((trail) => (
                   <tr key={trail.id}>
                     <td className="p-4">{trail.title}</td>
                     <td className="p-4">
