@@ -125,6 +125,8 @@ const UserProfilePage = () => {
               <th className="p-4">Condition</th>
               <th className="p-4">Foot Traffic</th>
               <th className="p-4">Open?</th>
+              <th className="p-4">Update</th>
+              <th className="p-4">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -151,6 +153,7 @@ const UserProfilePage = () => {
             <tr>
               <th className="p-4">Trail Name</th>
               <th className="p-4">Saved On</th>
+              <th className="p-4">Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -163,6 +166,7 @@ const UserProfilePage = () => {
                     </button>
                   </td>
                   <td className="p-4">{favorite.created_at}</td>
+                  <td className="p-4">"remove button"</td>
                 </tr>
               );
             })}
@@ -175,7 +179,9 @@ const UserProfilePage = () => {
             <tr>
               <th className="p-4">Trail Name</th>
               <th className="p-4">Created On</th>
-              <th className="p-4">author</th>
+              <th className="p-4">Author</th>
+              <th className="p-4">Update</th>
+              <th className="p-4">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -189,6 +195,16 @@ const UserProfilePage = () => {
                   </td>
                   <td className="p-4">{post.created_at}</td>
                   <td className="p-4">{post.author}</td>
+                  <td className="p-4">
+                    <button className="m-4 bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(`/posts/${post.id}/update`)}>
+                      Update
+                    </button>
+                  </td>
+                  <td className="p-4">
+                    <button className="m-4 bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(`/posts/${post.id}/delete`)}>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
@@ -202,6 +218,7 @@ const UserProfilePage = () => {
               <th className="p-4">Trail Name</th>
               <th className="p-4">Review</th>
               <th className="p-4">Created On</th>
+              <th className="p-4">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -215,6 +232,11 @@ const UserProfilePage = () => {
                   </td>
                   <td className="p-4">{review.body}</td>
                   <td className="p-4">{review.created_at}</td>
+                  <td className="p-4">
+                    <button className="m-4 bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(`/${review.post_id}/reviews/${review.id}`)}>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
