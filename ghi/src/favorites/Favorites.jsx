@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Favorites = () => {
     const [favoriteTrails, setFavoriteTrails] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const [notFound, setNotFound] = useState(false);
     const { token } = useToken();
     const navigate = useNavigate();
     const [user, setUser] = useState("");
@@ -27,6 +28,8 @@ const Favorites = () => {
             if (response.ok) {
                 const data = await response.json();
                 setFavoriteTrails(data);
+            } else if(response.status === 404) {
+                setNotFound(true);
             }
         } catch (error) {
             console.error("Error fetching favorite trails:", error);
@@ -54,9 +57,9 @@ const Favorites = () => {
     useEffect(() => {
         console.log(`useEffect running with token ${token}`);
             fetchLoggedInUserData();
-            fetchFavoriteTrails();
+            fetchFavoriteTrails(setNotFound);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [setNotFound]);
 
     const MyFavoritesData = async (favoriteTrails) => {
       const myFavoritesList = favoriteTrails.filter(favorite => favorite.user_id === user.id);
@@ -71,44 +74,50 @@ const Favorites = () => {
     const navigateToTrail = (post_id) => {
         navigate(`/posts/${post_id}`);
     }
-    if (token) {
-        return (
-          <div>
-            <h2>Favorites</h2>
-            <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <thead>
-                <tr>
-                  <th className="p-4">Trail Name</th>
-                  <th className="p-4">View Trail</th>
-                </tr>
-              </thead>
-              <tbody>
-                {favorites.map((trail) => (
-                  <tr key={trail.id}>
-                    <td className="p-4">{trail.title}</td>
-                    <td className="p-4">
-                      <button onClick={() => navigateToTrail(trail.post_id)}>
-                        View
-                      </button>
-                    </td>
-                    <td className="p-4">
-                      <button
-                        className="m-4 bg-red-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
-                        onClick={() => deleteFavorite(trail.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        );
+    if (notFound) {
+      return (
+          <div>You have no favorites!</div>
+    );
     } else {
-        return (
-            <div>YOU MUST BE LOGGED IN TO VIEW FAVORITES!</div>
-        );
+        if (token) {
+            return (
+              <div>
+                <h2>Favorites</h2>
+                <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                  <thead>
+                    <tr>
+                      <th className="p-4">Trail Name</th>
+                      <th className="p-4">View Trail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {favorites.map((trail) => (
+                      <tr key={trail.id}>
+                        <td className="p-4">{trail.title}</td>
+                        <td className="p-4">
+                          <button onClick={() => navigateToTrail(trail.post_id)}>
+                            View
+                          </button>
+                        </td>
+                        <td className="p-4">
+                          <button
+                            className="m-4 bg-red-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                            onClick={() => deleteFavorite(trail.id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+        } else {
+            return (
+                <div>YOU MUST BE LOGGED IN TO VIEW FAVORITES!</div>
+            );
+        }
     }
 }
 

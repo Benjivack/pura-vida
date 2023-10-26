@@ -83,8 +83,8 @@ class FavoritesRepository:
                         )
                         result.append(favorite)
                     return result
-        except Exception as e:
-            print(e)
+        except Exception:
+            return {"message": "Could not get all favorites"}
 
     def delete(self, id: int) -> Union[None, Error]:
         try:

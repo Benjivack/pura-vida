@@ -176,7 +176,7 @@ class PostRepository:
                     )
                     record = db.fetchone()
                     if record is None:
-                        return {"message": "Post not found"}
+                        return None
 
                     post = GetPost(
                         id=record[0],

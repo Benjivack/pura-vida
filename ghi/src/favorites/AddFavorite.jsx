@@ -34,7 +34,6 @@ function AddFavoriteForm() {
         if (response.ok) {
             event.target.reset();
             navigate("/favorites");
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }
     };
     if (token) {

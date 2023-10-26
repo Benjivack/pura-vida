@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status, Response
 from queries.favorites import (
     FavoriteIn,
     FavoritesRepository,
@@ -25,12 +25,17 @@ def create_favorite(
 
 @router.get("/api/favorites", response_model=Union[List[GetFavorites], Error])
 def get_all(
+    response: Response,
     repo: FavoritesRepository = Depends(),
     account_data: dict = Depends(
         authenticator.get_current_account_data
         )
 ):
-    return repo.get_all()
+    result = repo.get_all()
+    if result == []:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {"message": "You have no favorites"}
+    return result
 
 
 @router.delete(
