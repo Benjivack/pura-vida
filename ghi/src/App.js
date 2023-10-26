@@ -9,7 +9,7 @@ import PostList from "./posts/PostsList";
 import PostDetail from "./posts/PostDetail";
 import ReviewForm from "./reviews/ReviewForm";
 import ReviewList from "./reviews/ReviewList";
-import ReviewDetail from "./reviews/ReviewDetail";
+import ReviewDelete from "./reviews/ReviewDelete";
 import StatusForm from "./status/StatusForm";
 import StatusList from "./status/StatusList";
 import Favorites from "./favorites/Favorites";
@@ -94,7 +94,7 @@ function App() {
               <Route
                 exact
                 path="/:post_id/reviews/:review_id"
-                element={<ReviewDetail />}
+                element={<ReviewDelete />}
               />
               <Route
                 exact
