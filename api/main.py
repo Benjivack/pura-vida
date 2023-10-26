@@ -5,12 +5,13 @@ from authenticator import authenticator
 import os
 
 app = FastAPI()
-app.include_router(authenticator.router)
-app.include_router(users.router)
-app.include_router(posts.router)
-app.include_router(favorites.router)
-app.include_router(reviews.router)
-app.include_router(status.router)
+app.include_router(authenticator.router, tags=["Authentication"])
+app.include_router(users.router, tags=["User"])
+app.include_router(posts.router, tags=["Posts"])
+app.include_router(favorites.router, tags=["Favorites"])
+app.include_router(reviews.router, tags=["Reviews"])
+app.include_router(status.router, tags=["Status"])
+
 
 app.add_middleware(
     CORSMiddleware,

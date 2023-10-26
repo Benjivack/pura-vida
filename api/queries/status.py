@@ -91,7 +91,60 @@ class StatusRepository:
             old_data = status.dict()
             return StatusOut(id=status_id, **old_data)
 
-    def get_all(self) -> Union[List[StatusGetOut], Error]:
+    def get_all(self, post_id) -> Union[List[StatusGetOut], Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT
+                            s.id,
+                            s.user_id,
+                            s.post_id,
+                            s.condition,
+                            s.foot_traffic,
+                            s.is_open,
+                            u.username,
+                            p.title
+                        FROM status as s
+                            inner join posts as p on s.post_id = p.id
+                                inner join users as u on s.user_id = u.id
+                        WHERE p.id = %s
+                        """,
+                        [post_id]
+                    )
+                    result = []
+                    for record in db:
+                        status = StatusGetOut(
+                            id=record[0],
+                            user_id=record[1],
+                            post_id=record[2],
+                            condition=record[3],
+                            foot_traffic=record[4],
+                            is_open=record[5],
+                            username=record[6],
+                            title=record[7]
+                        )
+                        result.append(status)
+                    return result
+        except Exception:
+            return {"message": "could not get all statuses"}
+
+    def delete(self, id: int) -> Union[None, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM status WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception:
+            return {"message": "could not status review"}
+
+    def get_every(self) -> Union[List[StatusGetOut], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -127,17 +180,3 @@ class StatusRepository:
                     return result
         except Exception:
             return {"message": "could not get all statuses"}
-
-    def delete(self, id: int) -> Union[None, Error]:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    db.execute(
-                        """
-                        DELETE FROM status WHERE id = %s
-                        """,
-                        [id]
-                    )
-                    return True
-        except Exception:
-            return {"message": "could not status review"}

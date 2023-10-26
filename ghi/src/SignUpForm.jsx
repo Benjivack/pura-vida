@@ -35,45 +35,61 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="card text-bg-light mb-3">
+    <div className="w-full max-w-xs">
       <h5 className="card-header">Signup</h5>
       <div className="card-body">
-        <form onSubmit={(e) => handleRegistration(e)}>
+        <form
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          onSubmit={(e) => handleRegistration(e)}
+        >
           <div className="mb-3">
-            <label className="form-label">username</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Username
+            </label>
             <input
               name="username"
               type="text"
-              className="form-control"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Username"
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">password</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Password
+            </label>
             <input
               name="password"
               type="password"
-              className="form-control"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="*****"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">email</label>
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Email
+            </label>
             <input
               name="email"
               type="text"
-              className="form-control"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Email"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
             />
           </div>
           <div>
-            <input className="btn btn-primary" type="submit" value="Register" />
+            <input
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              value="Register"
+            />
           </div>
         </form>
       </div>

@@ -33,14 +33,13 @@ def update_status(
     return repo.update(status_id, status)
 
 
-@router.get("/api/status", response_model=Union[List[StatusGetOut], Error])
+@router.get("/api/status/{post_id}",
+            response_model=Union[List[StatusGetOut], Error])
 def get_all(
+    post_id: int,
     repo: StatusRepository = Depends(),
-    account_data: dict = Depends(
-        authenticator.get_current_account_data
-        )
 ):
-    return repo.get_all()
+    return repo.get_all(post_id)
 
 
 @router.delete(
@@ -52,3 +51,11 @@ def delete_status(
     status: StatusRepository = Depends(),
 ):
     return status.delete(status_id)
+
+
+@router.get("/api/status",
+            response_model=Union[List[StatusGetOut], Error])
+def get_every(
+    repo: StatusRepository = Depends(),
+):
+    return repo.get_every()
