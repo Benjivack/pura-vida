@@ -141,6 +141,16 @@ const UserProfilePage = () => {
                   <td className="p-4">{stat.condition}</td>
                   <td className="p-4">{stat.foot_traffic}</td>
                   <td className="p-4">{stat.is_open}</td>
+                  <td className="p-4">
+                    <button className="m-4 bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(`/${stat.post_id}/${stat.user_id}/${stat.id}/update`)}>
+                      Update
+                    </button>
+                  </td>
+                  <td className="p-4">
+                    <button className="m-4 bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(`/${stat.title}/${stat.user_id}/${stat.id}/delete`)}>
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}

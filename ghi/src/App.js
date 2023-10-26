@@ -22,6 +22,8 @@ import UserProfilePage from "./users/UserProfilePage";
 import PostUpdate from "./posts/PostUpdate";
 import LogoutForm from "./LogoutForm";
 import PostDelete from "./posts/PostDelete";
+import StatusDelete from "./status/StatusDelete";
+import StatusUpdate from "./status/StatusUpdate";
 // import { useEffect, useState } from "react";
 // import Construct from "./Construct.js";
 // import ErrorNotification from "./ErrorNotification";
@@ -107,6 +109,16 @@ function App() {
                 exact
                 path="/posts/:post_id/statuses"
                 element={<StatusList />}
+              />
+              <Route
+                exact
+                path="/:status_title/:status_user_id/:status_id/delete"
+                element={<StatusDelete />}
+              />
+              <Route
+                exact
+                path="/:status_post_id/:status_user_id/:status_id/update"
+                element={<StatusUpdate />}
               />
             </Routes>
           </AuthProvider>
