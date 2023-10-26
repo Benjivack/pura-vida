@@ -76,7 +76,7 @@ const PostDetail = () => {
             <th className="p-4">Latitude</th>
             <th className="p-4">Longitude</th>
             <th className="p-4">Zipcode</th>
-            <th className="p-4">Body</th>
+            <th className="p-4">Description</th>
             <th className="p-4">Created By</th>
             <th className="p-4">Created At</th>
           </tr>
