@@ -29,6 +29,18 @@ class PostOut(BaseModel):
     created_at: date
 
 
+class GetPost(BaseModel):
+    id: int
+    title: str
+    latitude: float
+    longitude: float
+    zipcode: str
+    body: str
+    created_by: int
+    created_at: date
+    author: str
+
+
 class PostRepository:
     def update(self, post_id: int, posts: PostIn) -> Union[PostOut, Error]:
         try:
@@ -97,29 +109,30 @@ class PostRepository:
                 # return PostOut(id=id, **old_data)
                 return self.posts_in_to_out(id, posts)
 
-    def get_all(self) -> Union[List[PostOut], Error]:
+    def get_all(self) -> Union[List[GetPost], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
                         SELECT
-                            id,
-                            title,
-                            latitude,
-                            longitude,
-                            zipcode,
-                            body,
-                            created_by,
-                            created_at
-
-                        FROM posts
+                            p.id,
+                            p.title,
+                            p.latitude,
+                            p.longitude,
+                            p.zipcode,
+                            p.body,
+                            p.created_by,
+                            p.created_at,
+                            u.username
+                        FROM posts as p
+                            INNER JOIN users as u ON u.id = p.created_by
                         ORDER BY created_at
                         """
                     )
                     result = []
                     for record in db:
-                        post = PostOut(
+                        post = GetPost(
                             id=record[0],
                             title=record[1],
                             latitude=record[2],
@@ -127,7 +140,8 @@ class PostRepository:
                             zipcode=record[4],
                             body=record[5],
                             created_by=record[6],
-                            created_at=record[7]
+                            created_at=record[7],
+                            author=record[8]
                         )
                         result.append(post)
                     return result
@@ -145,16 +159,18 @@ class PostRepository:
                     db.execute(
                         """
                         SELECT
-                            id,
-                            title,
-                            latitude,
-                            longitude,
-                            zipcode,
-                            body,
-                            created_by,
-                            created_at
-                        FROM posts
-                        WHERE id = %s
+                            p.id,
+                            p.title,
+                            p.latitude,
+                            p.longitude,
+                            p.zipcode,
+                            p.body,
+                            p.created_by,
+                            p.created_at,
+                            u.username
+                        FROM posts as p
+                            INNER JOIN users as u ON u.id = p.created_by
+                        WHERE p.id = %s
                         """,
                         [post_id]
                     )
@@ -162,7 +178,7 @@ class PostRepository:
                     if record is None:
                         return {"message": "Post not found"}
 
-                    post = PostOut(
+                    post = GetPost(
                         id=record[0],
                         title=record[1],
                         latitude=record[2],
@@ -170,7 +186,8 @@ class PostRepository:
                         zipcode=record[4],
                         body=record[5],
                         created_by=record[6],
-                        created_at=record[7]
+                        created_at=record[7],
+                        author=record[8]
                     )
                     return post
         except Exception:

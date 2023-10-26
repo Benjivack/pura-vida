@@ -9,7 +9,6 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(username, password);
-    e.target.reset();
   };
 
   return (

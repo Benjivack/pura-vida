@@ -68,67 +68,90 @@ const PostsForm = () => {
 
   if (token) {
       return (
-        <div className="card text-bg-light mb-3">
+        <div className="w-full max-w-xs">
           <h5 className="card-header">Create Post</h5>
           <div className="card-body">
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <div className="mb-3">
-                <label className="form-label">title</label>
+            <form
+              className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Title
+                </label>
                 <input
                   name="title"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="title"
                   type="text"
-                  className="form-control"
+                  placeholder="Title"
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">latitude</label>
+              <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Latitude
+                </label>
                 <input
                   name="latitude"
                   type="number"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Latitude"
                   onChange={(e) => {
                     setLatitude(e.target.value);
                   }}
                 />
               </div>
-              <div className="mb-3">
-                <label className="form-label">longitude</label>
+              <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Longitude
+                </label>
                 <input
                   name="longitude"
                   type="number"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Longitude"
                   onChange={(e) => {
                     setLongitude(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">zipcode</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Zipcode
+                </label>
                 <input
                   name="zipcode"
                   type="text"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="5 Digit Zipcode"
                   onChange={(e) => {
                     setZipcode(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">body</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Body
+                </label>
                 <input
                   name="body"
                   type="text"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Body"
                   onChange={(e) => {
                     setBody(e.target.value);
                   }}
                 />
               </div>
               <div>
-                <input className="btn btn-primary" type="submit" value="Create Post" />
+                <input
+                  className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                  value="Create Post"
+                />
               </div>
             </form>
           </div>

@@ -143,3 +143,40 @@ class StatusRepository:
                     return True
         except Exception:
             return {"message": "could not status review"}
+
+    def get_every(self) -> Union[List[StatusGetOut], Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT
+                            s.id,
+                            s.user_id,
+                            s.post_id,
+                            s.condition,
+                            s.foot_traffic,
+                            s.is_open,
+                            u.username,
+                            p.title
+                        FROM status as s
+                            inner join posts as p on s.post_id = p.id
+                                inner join users as u on s.user_id = u.id
+                        """
+                    )
+                    result = []
+                    for record in db:
+                        status = StatusGetOut(
+                            id=record[0],
+                            user_id=record[1],
+                            post_id=record[2],
+                            condition=record[3],
+                            foot_traffic=record[4],
+                            is_open=record[5],
+                            username=record[6],
+                            title=record[7]
+                        )
+                        result.append(status)
+                    return result
+        except Exception:
+            return {"message": "could not get all statuses"}

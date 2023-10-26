@@ -13,7 +13,6 @@ const StatusList = () => {
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setStatus(data);
     }
   };
@@ -31,35 +30,43 @@ const StatusList = () => {
   };
 
   const navigateToCreateStatus = async (post_id) => {
-    navigate(`/post/${post_id}/status`);
+    navigate(`/posts/${post_id}/status`);
   };
 
   return (
     <div>
       {token ? (
-        <button onClick={() => navigateToCreateStatus()}>Create Status</button>
+        <button
+          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => navigateToCreateStatus(post_id)}
+        >
+          Create Status
+        </button>
       ) : null}
-      <table className="table-auto">
+      <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <thead>
           <tr>
-            <th>Trail</th>
-            <th>Trail Condition</th>
-            <th>Foot Traffic</th>
-            <th>Is it open?</th>
-            <th>Status by</th>
+            <th className="p-4">Trail</th>
+            <th className="p-4">Trail Condition</th>
+            <th className="p-4">Foot Traffic</th>
+            <th className="p-4">Is it open?</th>
+            <th className="p-4">Status by</th>
           </tr>
         </thead>
         <tbody>
           {status.map((status) => {
             return (
               <tr key={status.id}>
-                <td>{status.title}</td>
-                <td>{status.condition}</td>
-                <td>{status.foot_traffic}</td>
-                <td>{status.is_open}</td>
-                <td>{status.username}</td>
+                <td className="p-4">{status.title}</td>
+                <td className="p-4">{status.condition}</td>
+                <td className="p-4">{status.foot_traffic}</td>
+                <td className="p-4">{status.is_open}</td>
+                <td className="p-4">{status.username}</td>
                 <td>
-                  <button onClick={() => navigateToPostStatus(post_id)}>
+                  <button
+                    className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                    onClick={() => navigateToPostStatus(post_id)}
+                  >
                     View
                   </button>
                 </td>
