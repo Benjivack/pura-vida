@@ -1,3 +1,21 @@
+26 oct
+    i have lost complete track of what day i did what so i will list all of it here
+    i created a delete front end form for my reviews
+    i added css to every form so their functions are a little more clear
+    i edited my review list back end so that i can now show the username of the creator of thew review and the name of the trail its connected to
+    i added the review body to the review list so people don't have to click in to each and every review to read what it says
+    i edited the logout and signup forms to make their buttons more prominent and clear of what to do
+
+23 oct
+    today i started and finished back end unit tests for the review functions with help from Brian,
+    im starting to clean up my code then transition into css to make my webpages ascetically pleasing,
+
+
+19 oct
+    today i finished the basic requirements of my sections and responsibility
+    making it so that you can create a review for a specific post and then be redirected to the reviews for that post,
+    on top of that you can also create a review from that list,
+
 18 oct
     today i finished my review front end page with some help from brian and ben
     i completed a front end list page for all reviews

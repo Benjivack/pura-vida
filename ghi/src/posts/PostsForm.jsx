@@ -14,13 +14,6 @@ const PostsForm = () => {
 
   const fetchData = async () => {
         const url = `${process.env.REACT_APP_API_HOST}/api/user`;
-        // const fetchUserOption = {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }
         const response = await fetch(url, {credentials: 'include'});
         if (response.ok) {
           const data = await response.json();

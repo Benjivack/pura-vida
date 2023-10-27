@@ -24,8 +24,6 @@ const SignupForm = () => {
       joined: `${year}-${month}-${day}`
     };
 
-    console.log(accountData)
-    // debugger
     register(
       accountData,
       `${process.env.REACT_APP_API_HOST}/api/users`

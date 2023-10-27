@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 const StatusUpdate = () => {
   let { status_post_id, status_id } = useParams();
   const [userId, setUserId] = useState("");
-    const [postId, setPostId] = useState("");
+  const [postId, setPostId] = useState("");
   const [condition, setCondition] = useState("");
   const [footTraffic, setFootTraffic] = useState("");
   const [isOpen, setIsOpen] = useState("");
   const { token } = useToken();
   const navigate = useNavigate();
 
-  const getUserId = async () => {
+  const getUserId = async (status_post_id) => {
     const userUrl = `${process.env.REACT_APP_API_HOST}/api/user`;
     const response = await fetch(userUrl, { credentials: "include" });
     if (response.ok) {
@@ -24,8 +24,8 @@ const StatusUpdate = () => {
   };
 
   useEffect(() => {
-    getUserId();
-  }, []);
+    getUserId(status_post_id);
+  }, [status_post_id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +36,6 @@ const StatusUpdate = () => {
       foot_traffic: footTraffic,
       is_open: isOpen,
     };
-    console.log(data);
 
     const statusUrl = `${process.env.REACT_APP_API_HOST}/api/status/${status_id}`;
     const fetchOption = {
@@ -110,8 +109,11 @@ const StatusUpdate = () => {
                 type="submit"
                 value="Update Status"
               />
-              <button className="m-4 bg-gray-300 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => navigate(-1)}>
-                 Cancel
+              <button
+                className="m-4 bg-gray-300 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => navigate(`/profile`)}
+              >
+                Cancel
               </button>
             </div>
           </form>

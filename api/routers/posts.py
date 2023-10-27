@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, status, Response
 from queries.posts import PostIn, PostRepository, PostOut, Error, GetPost
 from typing import Union, List
 from authenticator import authenticator
@@ -39,9 +39,15 @@ def update_post(
 @router.get("/api/posts/{post_id}", response_model=Union[GetPost, Error])
 def get_post_by_id(
     post_id: int,
-    repo: PostRepository = Depends(),
+    response: Response,
+    repo: PostRepository = Depends()
+
 ):
-    return repo.get_by_id(post_id)
+    result = repo.get_by_id(post_id)
+    if result is None:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {"message": "Post not found"}
+    return result
 
 
 @router.delete(

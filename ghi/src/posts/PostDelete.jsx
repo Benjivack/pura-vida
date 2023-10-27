@@ -23,7 +23,6 @@ const PostDelete = () => {
       const response = await fetch(url, {credentials: 'include'});
       if (response.ok) {
         const postData = await response.json();
-        console.log(postData)
         setPostInfo(postData);
       }
   };

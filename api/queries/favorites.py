@@ -72,7 +72,6 @@ class FavoritesRepository:
                     )
                     result = []
                     for record in db:
-                        print(record)
                         favorite = GetFavorites(
                             id=record[0],
                             user_id=record[1],
@@ -83,8 +82,8 @@ class FavoritesRepository:
                         )
                         result.append(favorite)
                     return result
-        except Exception as e:
-            print(e)
+        except Exception:
+            return {"message": "Could not get all favorites"}
 
     def delete(self, id: int) -> Union[None, Error]:
         try:

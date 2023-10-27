@@ -70,8 +70,6 @@ class PostRepository:
                             post_id
                         ]
                     )
-                # old_data = posts.dict()
-                # return PostOut(id=post_id, **old_data)
                 return self.posts_in_to_out(post_id, posts)
         except Exception:
             return {"message": "could not update that post"}
@@ -103,10 +101,7 @@ class PostRepository:
                         posts.created_at
                     ]
                 )
-                print('RESULT ID: ', result)
                 id = result.fetchone()[0]
-                # old_data = posts.dict()
-                # return PostOut(id=id, **old_data)
                 return self.posts_in_to_out(id, posts)
 
     def get_all(self) -> Union[List[GetPost], Error]:
@@ -176,7 +171,7 @@ class PostRepository:
                     )
                     record = db.fetchone()
                     if record is None:
-                        return {"message": "Post not found"}
+                        return None
 
                     post = GetPost(
                         id=record[0],

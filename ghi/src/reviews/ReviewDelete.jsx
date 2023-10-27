@@ -2,13 +2,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ReviewDetail = () => {
-  let param = useParams();
   let { review_id } = useParams();
   let { post_id } = useParams();
   const navigate = useNavigate();
-
-  console.log(param);
-  console.log("HIII THIS IS THE REVIEW DETAIL!!!");
 
   const DeleteReview = async (review_id) => {
     const url = `${process.env.REACT_APP_API_HOST}/api/review/${review_id}`;

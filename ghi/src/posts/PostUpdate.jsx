@@ -27,7 +27,6 @@ const PostUpdate = () => {
             const response = await fetch(url, {credentials: 'include'});
             if (response.ok) {
             const postData = await response.json();
-            console.log(postData)
             setPostInfo(postData);
         }
     };
@@ -36,9 +35,6 @@ const PostUpdate = () => {
         fetchData();
         fetchPostData(post_id);
     }, [post_id]);
-    console.log(postInfo)
-    console.log(logger)
-    console.log(title)
 
     useEffect(() => {
         if (postInfo !== '') {
@@ -74,81 +70,91 @@ const PostUpdate = () => {
     const response = await fetch(updatePostUrl, fetchOption);
     if (response.ok) {
         e.target.reset();
-        navigate("/posts");
+        navigate("/profile");
     }
   };
 
 
   if (postInfo.created_by === logger.id) {
       return (
-        <div className="card text-bg-light mb-3">
+        <div className="w-full max-w-xs">
           <h5 className="card-header">Update Post</h5>
           <div className="card-body">
-            <form onSubmit={(e) => handleSubmit(e, post_id)}>
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={(e) => handleSubmit(e, post_id)}>
               <div className="mb-3">
-                <label htmlFor= "title" className="form-label">title</label>
+                <label htmlFor= "title" className="block text-gray-700 text-sm font-bold mb-2">title</label>
                 <input
                   value={title}
                   id="title"
                   name="title"
                   type="text"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="latitude" className="form-label">latitude</label>
+                <label htmlFor="latitude" className="block text-gray-700 text-sm font-bold mb-2">latitude</label>
                 <input
                   value={latitude}
                   id="latitude"
                   name="latitude"
                   type="number"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => {
                     setLatitude(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">longitude</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">longitude</label>
                 <input
                   value={longitude}
                   name="longitude"
                   type="number"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => {
                     setLongitude(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">zipcode</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">zipcode</label>
                 <input
                   value={zipcode}
                   name="zipcode"
                   type="text"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => {
                     setZipcode(e.target.value);
                   }}
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">body</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">body</label>
                 <input
                   value={body}
                   name="body"
                   type="text"
-                  className="form-control"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => {
                     setBody(e.target.value);
                   }}
                 />
               </div>
               <div>
-                <input className="btn btn-primary" type="submit" value="Update Post" />
+                <input
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+                value="Create Status"
+              />
+              <button
+                className="m-4 bg-gray-300 hover:bg-blue-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => navigate(`/profile`)}
+              >
+                Cancel
+              </button>
               </div>
             </form>
           </div>
