@@ -1,5 +1,34 @@
 ## Date
 
+10/26/23
+
+### Today I worked on:
+
+The final touches of our project
+**AH-HA!💡**
+I learned how not to add variables to our deployment
+**🎉 Celebrations 🎉**
+Go us!
+
+### Bugs encountered 🐛🐞🐜 :
+
+We nearly lost our website because we added variables that overid our gitlab ci file
+
+**\~Solution~**
+we needed to delete those new variables to fix it
+
+### References Used Today:
+
+### Any Blockers:
+
+### Tomorrow I'm working on:
+
+Presenting and CSS
+
+### References for Tomorrow:
+
+## Date
+
 9/27/23
 
 ### Today I worked on:
