@@ -58,7 +58,7 @@ const StatusList = () => {
     fetchData(post_id);
 
     const socket = new WebSocket(
-      `ws://${process.env.REACT_APP_WEBSOCKET_HOST}/wss`
+      `wss://${process.env.REACT_APP_WEBSOCKET_HOST}/wss`
     );
 
     socket.onopen = () => {
@@ -84,20 +84,20 @@ const StatusList = () => {
 
   return (
     <div>
-    {/* <div  className="grid grid-cols-8 gap-0"> */}
+      {/* <div  className="grid grid-cols-8 gap-0"> */}
       <div>
-      {/* <div className="col-start-6 col-span-3 row-start-3"> */}
-      {token ? (
-        <button
-          className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
-          onClick={() => navigateToCreateStatus(post_id)}
-        >
-          Create Status
-        </button>
-      ) : null}
+        {/* <div className="col-start-6 col-span-3 row-start-3"> */}
+        {token ? (
+          <button
+            className="m-4 bg-blue-500 hover:bg-blue-100 text-white font-bold py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+            onClick={() => navigateToCreateStatus(post_id)}
+          >
+            Create Status
+          </button>
+        ) : null}
       </div>
       <div>
-      {/* <div className="col-start-6 col-span-8"> */}
+        {/* <div className="col-start-6 col-span-8"> */}
         <table className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <thead>
             <tr>
