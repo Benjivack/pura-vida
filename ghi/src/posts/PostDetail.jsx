@@ -32,20 +32,6 @@ const PostDetail = () => {
     fetchData(setPost, setNotFound, post_id);
   }, [setPost, setNotFound, post_id]);
 
-  const navigateToCreateReview = async (post_id) => {
-    navigate(`/posts/${post_id}/review`);
-  };
-  const navigateToReviewList = async (post_id) => {
-    navigate(`/posts/${post_id}/reviews`);
-  };
-
-  const navigateToStatusList = async (post_id) => {
-    navigate(`/posts/${post_id}/statuses`);
-  };
-
-  const navigateToCreateStatus = async (post_id) => {
-    navigate(`/posts/${post_id}/status`);
-  };
   if (notFound) {
     return (
       <div>Post Not found!</div>

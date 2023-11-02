@@ -22,15 +22,8 @@ const ReviewList = () => {
     getData(post_id);
   }, [post_id]);
 
-  const navigateToReview = async (review_id) => {
-    navigate(`/${post_id}/reviews/${review_id}`);
-  };
-
   const navigateToCreateReview = async () => {
     navigate(`/posts/${post_id}/review`);
-  };
-  const navigateToPost = async () => {
-    navigate(`/posts/${post_id}`);
   };
 
   return (
