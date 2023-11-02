@@ -1,29 +1,82 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const StatusList = () => {
   const [status, setStatus] = useState([]);
   const navigate = useNavigate();
+  const [ws, setWs] = useState(null);
   const { token } = useToken();
   let { post_id } = useParams();
 
-  const fetchData = async (post_id) => {
+  // const fetchData = async (post_id) => {
+  //   const url = `${process.env.REACT_APP_API_HOST}/api/status/${post_id}`;
+  //   const response = await fetch(url);
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     setStatus(data);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData(post_id);
+  //   const interval = setInterval(() => {
+  //     fetchData(post_id);
+  //   }, 15000);
+  //   return () => clearInterval(interval);
+  // }, [post_id]);
+
+  // useEffect(() => {
+  //   var socket = new WebSocket(`ws://localhost:8000/wss`);
+
+  //   socket.onopen = () => {
+  //     socket.send(ws);
+  //   };
+
+  //   socket.onmessage = () => {
+  //     fetchData();
+  //   };
+
+  //   setWs(socket);
+  //   return () => {
+  //     if (socket && socket.readyState === WebSocket.OPEN) {
+  //       fetchData(post_id);
+  //     }
+  //   };
+  // }, [status]);
+
+  const fetchData = useCallback(async (post_id) => {
     const url = `${process.env.REACT_APP_API_HOST}/api/status/${post_id}`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
       setStatus(data);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData(post_id);
-    const interval = setInterval(() => {
+
+    const socket = new WebSocket(
+      `ws://${process.env.REACT_APP_WEBSOCKET_HOST}/wss`
+    );
+
+    socket.onopen = () => {
+      socket.send(ws);
+    };
+
+    socket.onmessage = () => {
       fetchData(post_id);
-    }, 15000);
-    return () => clearInterval(interval);
-  }, [post_id]);
+    };
+
+    setWs(socket);
+
+    return () => {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.close();
+      }
+    }; // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const navigateToCreateStatus = async (post_id) => {
     navigate(`/posts/${post_id}/status`);
